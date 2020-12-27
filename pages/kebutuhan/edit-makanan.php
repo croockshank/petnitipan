@@ -30,28 +30,29 @@ include '../../templates/header.php';
                         <div class="form-validation">
                             <form class="form-valide" name="jenis-kandang" action="" method="post">
                                 <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label" for="val-nama">Nama<span class="text-danger">*</span>
+                                    <label class="col-lg-2 col-form-label" for="val-nama-makanan">Nama<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="number" class="form-control" id="val-nama" name="val-nama" placeholder="Masukan nama makanan...">
+                                        <input type="number" class="form-control" id="val-nama-makanan" name="val-nama-makanan" placeholder="Masukan nama makanan...">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label" for="val-jumlah">Jumlah<span class="text-danger">*</span>
+                                    <label class="col-lg-2 col-form-label" for="val-jumlah-makanan">Jumlah<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="number" class="form-control" id="val-jumlah" name="val-jumlah" placeholder="Masukan jumlah makanan...">
+                                        <input type="number" class="form-control" id="val-jumlah-makanan" name="val-jumlah-makanan" placeholder="Masukan jumlah makanan...">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label" for="val-angka">Biaya<span class="text-danger">*</span>
+                                    <label class="col-lg-2 col-form-label" for="val-biaya-makanan">Biaya<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-10">
                                         <div class="input-group">
                                             <div class="input-group-prepend"><span class="input-group-text">Rp</span></div>
-                                            <input type="number" class="form-control">
+                                            <input type="number" id="val-biaya-makanan" class="form-control" name="val-biaya-makanan">
                                             <div class="input-group-append"><span class="input-group-text">,00</span></div>
                                         </div>
+                                        <div class="text-info mt-1">Biaya per satuan makanan(misalnya Rp 5.000,00/gram)</div>
                                     </div>
                                 </div>
                                 <div class="form-group row">

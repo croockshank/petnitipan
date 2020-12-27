@@ -28,26 +28,31 @@
                     <div class="card-body">
                         <h4 class="card-title">Ubah Vaksin</h4>
                         <div class="form-validation">
-                            <form class="form-valide" name="jenis-kandang" action="" method="post">
+                            <form class="form-valide" action="" method="post">
                                 <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label" for="val-nama">Nama<span class="text-danger">*</span>
+                                    <label class="col-lg-2 col-form-label" for="val-nama-vaksin">Nama<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="number" class="form-control" id="val-nama" name="val-nama" placeholder="Masukan nama vaksin...">
+                                        <input type="number" class="form-control" id="val-nama-vaksin" name="val-nama-vaksin" placeholder="Masukan nama vaksin...">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label" for="val-jumlah">Jumlah<span class="text-danger">*</span>
+                                    <label class="col-lg-2 col-form-label" for="val-jumlah-vaksin">Jumlah<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="number" class="form-control" id="val-jumlah" name="val-jumlah" placeholder="Masukan jumlah vaksin...">
+                                        <input type="number" class="form-control" id="val-jumlah-vaksin" name="val-jumlah-vaksin" placeholder="Masukan jumlah vaksin...">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label" for="val-harga">Harga<span class="text-danger">*</span>
+                                    <label class="col-lg-2 col-form-label" for="val-biaya-vaksin">Biaya<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="number" class="form-control" id="val-harga" name="val-harga" placeholder="Masukan harga vaksin...">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text">Rp</span></div>
+                                            <input type="number" id="val-biaya-vaksin" class="form-control" name="val-biaya-vaksin">
+                                            <div class="input-group-append"><span class="input-group-text">,00</span></div>
+                                        </div>
+                                        <div class="text-info mt-1">Biaya per satuan vaksin(misalnya Rp 100.000,00/pcs)</div>
                                     </div>
                                 </div>
                                 <div class="form-group row">

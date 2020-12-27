@@ -48,7 +48,7 @@ include '../../templates/sidebar.php';
                                         <td>
                                             <div class="dropdown-button">
                                                 <div class="text-center" role="group">
-                                                    <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
+                                                    <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button"><i class="fas fa-ellipsis-v"></i></a>
                                                     <div class="dropdown-menu">
                                                         <a class="dropdown-item" href="pages/hewan/edit-jenis-hewan.php"><i class="far fa-edit"></i> Ubah</a>
                                                         <a class="dropdown-item" href="#"><i class="far fa-trash-alt"></i> Hapus</a>

@@ -28,12 +28,12 @@ include '../../templates/header.php';
                     <div class="card-body">
                         <h4 class="card-title">Ubah Hewan</h4>
                         <div class="form-validation">
-                            <form class="form-valide" name="jenis-kandang" action="" method="post">
+                            <form class="form-valide" name="jenis-kandang" action="" method="post" enctype="multipart/form-data">
                                 <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label" for="val-nama">Nama<span class="text-danger">*</span>
+                                    <label class="col-lg-2 col-form-label" for="val-nama-hewan">Nama<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="text" class="form-control" id="val-nama" name="val-nama" placeholder="Masukan nama...">
+                                        <input type="text" class="form-control" id="val-nama-hewan" name="val-nama-hewan" placeholder="Masukan nama...">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -62,29 +62,29 @@ include '../../templates/header.php';
                                     <label class="col-lg-2 col-form-label" for="val-jenis-kelamin">Jenis Kelamin<span class="text-danger">*</span>
                                     </label>
                                     <label class="radio-inline mr-3 ml-3">
-                                        <input type="radio" name="val-radio"> Laki-laki</label>
+                                        <input type="radio" name="val-jenis-kelamin" checked> Laki-laki</label>
                                     <label class="radio-inline mr-3">
-                                        <input type="radio" name="val-radio"> Perempuan</label>
+                                        <input type="radio" name="val-jenis-kelamin"> Perempuan</label>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label" for="val-angka">Panjang<span class="text-danger">*</span>
+                                    <label class="col-lg-2 col-form-label" for="val-panjang-hewan">Panjang<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="number" class="form-control" id="val-angka" name="val-angka" placeholder="Masukan panjang...">
+                                        <input type="number" class="form-control" id="val-panjang-hewan" name="val-panjang-hewan" placeholder="Masukan panjang...">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label" for="val-angka">Berat<span class="text-danger">*</span>
+                                    <label class="col-lg-2 col-form-label" for="val-berat-hewan">Berat<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="number" class="form-control" id="val-angka" name="val-angka" placeholder="Masukan berat...">
+                                        <input type="number" class="form-control" id="val-berat-hewan" name="val-berat-hewan" placeholder="Masukan berat...">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label" for="val-gambar">Gambar
+                                    <label class="col-lg-2 col-form-label" for="val-gambar-hewan">Gambar
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="file" id="val-gambar" name="val-gambar" placeholder="Masukan berat...">
+                                        <input type="file" id="val-gambar-hewan" name="val-gambar-hewan" placeholder="Masukan gambar hewan...">
                                     </div>
                                 </div>
                                 <div class="form-group row">

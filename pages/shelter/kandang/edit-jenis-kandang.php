@@ -30,10 +30,10 @@
                         <div class="form-validation">
                             <form class="form-valide" name="jenis-kandang" action="" method="post">
                                 <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label" for="val-angka">Luas(m<sup>2</sup>) <span class="text-danger">*</span>
+                                    <label class="col-lg-2 col-form-label" for="val-luas">Luas(m<sup>2</sup>) <span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="number" class="form-control" id="val-angka" name="val-angka" placeholder="Masukan luas kandang...">
+                                        <input type="number" class="form-control" id="val-luas" name="val-luas" placeholder="Masukan luas kandang...">
                                     </div>
                                 </div>
                                 <div class="form-group row">

@@ -30,10 +30,10 @@
                         <div class="form-validation">
                             <form class="form-valide" name="jenis-kandang" action="" method="post">
                                 <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label" for="val-nama">Nama<span class="text-danger">*</span>
+                                    <label class="col-lg-2 col-form-label" for="val-nama-administrator">Nama<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="text" class="form-control" id="val-nama" name="val-nama" placeholder="Masukan nama...">
+                                        <input type="text" class="form-control" id="val-nama-administrator" name="val-nama-administrator" placeholder="Masukan nama...">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -44,10 +44,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label" for="val-password">Password<span class="text-danger">*</span>
+                                    <label class="col-lg-2 col-form-label" for="val-password-required">Password<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="password" class="form-control" id="val-password" name="val-password" placeholder="Masukan password...">
+                                        <input type="password" class="form-control" id="val-password-required" name="val-password-required" placeholder="Masukan password...">
                                     </div>
                                 </div>
                                 <div class="form-group row">

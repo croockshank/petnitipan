@@ -2492,6 +2492,10 @@ input[type="button"].btn-block {
     clip: rect(0, 0, 0, 0);
     pointer-events: none; }
 
+.dropdown-button .fa-ellipsis-v{
+  cursor: pointer;
+}
+
 .input-group {
   position: relative;
   display: flex;

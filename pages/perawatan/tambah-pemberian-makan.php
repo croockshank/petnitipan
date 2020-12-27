@@ -30,24 +30,24 @@ include '../../templates/header.php';
                         <div class="form-validation">
                             <form class="form-valide" name="jenis-kandang" action="" method="post">
                                 <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label" for="val-nama">Nama Hewan<span class="text-danger">*</span>
+                                    <label class="col-lg-2 col-form-label" for="val-nama-hewan">Nama Hewan<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="text" class="form-control" id="val-nama" name="val-nama" placeholder="Masukan nama hewan...">
+                                        <input type="text" class="form-control" id="val-nama-hewan" name="val-nama-hewan" placeholder="Masukan nama hewan...">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label" for="val-nama">Nama Makanan<span class="text-danger">*</span>
+                                    <label class="col-lg-2 col-form-label" for="val-nama-makanan">Nama Makanan<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="text" class="form-control" id="val-nama" name="val-nama" placeholder="Masukan nama makanan...">
+                                        <input type="text" class="form-control" id="val-nama-makanan" name="val-nama-makanan" placeholder="Masukan nama makanan...">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label" for="val-angka">Jumlah(gr)<span class="text-danger">*</span>
+                                    <label class="col-lg-2 col-form-label" for="val-jumlah-makanan">Jumlah(gr)<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="number" class="form-control" id="val-angka" name="val-angka" placeholder="Masukan jumlah makanan...">
+                                        <input type="number" class="form-control" id="val-jumlah-makanan" name="val-jumlah-makanan" placeholder="Masukan jumlah makanan...">
                                     </div>
                                 </div>
                                 <div class="form-group row">
