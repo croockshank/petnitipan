@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Des 2020 pada 10.19
+-- Waktu pembuatan: 29 Des 2020 pada 03.05
 -- Versi server: 10.4.17-MariaDB
 -- Versi PHP: 7.3.25
 
@@ -79,11 +79,11 @@ INSERT INTO `hewan` (`id_hewan`, `nama_hewan`, `jenis_kelamin`, `panjang`, `bera
 (1, 'Shintaro', 'Laki Laki', 40, 3.6, 1, '2020-12-24', 1, '', 3, 10),
 (2, 'Tobama', 'Perempuan', 25, 6, 7, '2020-12-24', 1, '', 6, 3),
 (3, 'Koko', 'Laki Laki', 90, 8.7, 2, '2020-12-25', 1, '', 4, 7),
-(4, 'Katty', 'Perempuan', 70, 10.3, 1, '2020-12-25', 1, '', 5, 9),
+(4, 'Katty', 'Perempuan', 70, 10.3, 1, '2020-12-25', 2, '', 5, 9),
 (5, 'Rata', 'Laki Laki', 20, 4.5, 4, '2020-12-23', 1, '', 1, 2),
 (6, 'Kirito', 'Laki Laki', 60, 9.5, 2, '2020-12-16', 1, '', 4, 1),
 (7, 'Nekoma', 'Perempuan', 40, 6.9, 1, '2020-12-26', 1, '', 3, 9),
-(8, 'Bull Frek', 'Laki Laki', 12, 15.6, 2, '2020-12-20', 0, '', 8, 6),
+(8, 'Bull Frek', 'Laki Laki', 12, 15.6, 2, '2020-12-20', 1, '', 8, 6),
 (9, 'Tabi Tabi', 'Perempuan', 40, 8.6, 2, '2020-12-21', 1, '', 4, 10),
 (10, 'Ashuna', 'Perempuan', 30, 5.9, 1, '2020-12-23', 1, '', 3, 5);
 
@@ -106,8 +106,16 @@ CREATE TABLE `hewan_mendapatkan_makanan` (
 --
 
 INSERT INTO `hewan_mendapatkan_makanan` (`id_hewan_mendapatkan_makanan`, `id_hewan`, `id_makanan`, `jumlah`, `waktu`) VALUES
-(1, 7, 1, 100, '2020-12-22'),
-(2, 10, 1, 150, '2020-12-24');
+(4, 4, 1, 1000, '2020-12-27');
+
+--
+-- Trigger `hewan_mendapatkan_makanan`
+--
+DELIMITER $$
+CREATE TRIGGER `hewan_dapat_makanan` AFTER INSERT ON `hewan_mendapatkan_makanan` FOR EACH ROW UPDATE makanan SET jumlah = jumlah-NEW.jumlah
+WHERE id_makanan = NEW.id_makanan
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -122,6 +130,21 @@ CREATE TABLE `hewan_mendapatkan_vaksin` (
   `jumlah` int(100) NOT NULL,
   `waktu` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `hewan_mendapatkan_vaksin`
+--
+
+INSERT INTO `hewan_mendapatkan_vaksin` (`id_hewan_mendapatkan_vaksin`, `id_hewan`, `id_vaksin`, `jumlah`, `waktu`) VALUES
+(2, 3, 1, 5, '2020-12-23');
+
+--
+-- Trigger `hewan_mendapatkan_vaksin`
+--
+DELIMITER $$
+CREATE TRIGGER `hewan_dapat_vaksin` AFTER INSERT ON `hewan_mendapatkan_vaksin` FOR EACH ROW UPDATE vaksin SET jumlah = jumlah - NEW.jumlah WHERE id_vaksin = NEW.id_vaksin
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -224,7 +247,7 @@ CREATE TABLE `makanan` (
 --
 
 INSERT INTO `makanan` (`id_makanan`, `nama_makanan`, `jumlah`, `harga_satuan`, `id_jenis_hewan`, `id_shelter`) VALUES
-(1, 'Whiskas', 12000, 300, 1, 8),
+(1, 'Whiskas', 11000, 300, 1, 8),
 (2, 'Proplan', 10000, 240, 1, 5),
 (3, 'Pedigree', 20000, 500, 2, 10),
 (4, 'Dog Choize Beef', 10000, 340, 2, 1),
@@ -275,7 +298,16 @@ CREATE TABLE `pengadopsi_mengadopsi_hewan` (
 --
 
 INSERT INTO `pengadopsi_mengadopsi_hewan` (`id_pengadopsi_mengadopsi_hewan`, `id_pengadopsi`, `id_hewan`, `biaya`) VALUES
-(1, 1, 1, 700000);
+(3, 1, 4, 800000);
+
+--
+-- Trigger `pengadopsi_mengadopsi_hewan`
+--
+DELIMITER $$
+CREATE TRIGGER `perubahan_status` AFTER INSERT ON `pengadopsi_mengadopsi_hewan` FOR EACH ROW UPDATE hewan SET status = 2
+WHERE id_hewan=NEW.id_hewan
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -329,7 +361,7 @@ CREATE TABLE `vaksin` (
 --
 
 INSERT INTO `vaksin` (`id_vaksin`, `nama_vaksin`, `harga_satuan`, `jumlah`, `id_jenis_hewan`, `id_shelter`) VALUES
-(1, 'Immune Booster Cat', 80000, 45, 1, 2),
+(1, 'Immune Booster Cat', 80000, 40, 1, 2),
 (2, 'f4 AntiVirus', 261000, 30, 1, 3),
 (3, 'Rabisin', 70000, 25, 2, 1),
 (4, 'Eurican 6 Plus', 350000, 20, 2, 6),
@@ -451,13 +483,13 @@ ALTER TABLE `hewan`
 -- AUTO_INCREMENT untuk tabel `hewan_mendapatkan_makanan`
 --
 ALTER TABLE `hewan_mendapatkan_makanan`
-  MODIFY `id_hewan_mendapatkan_makanan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_hewan_mendapatkan_makanan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `hewan_mendapatkan_vaksin`
 --
 ALTER TABLE `hewan_mendapatkan_vaksin`
-  MODIFY `id_hewan_mendapatkan_vaksin` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_hewan_mendapatkan_vaksin` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `jenis_hewan`
@@ -493,7 +525,7 @@ ALTER TABLE `pengadopsi`
 -- AUTO_INCREMENT untuk tabel `pengadopsi_mengadopsi_hewan`
 --
 ALTER TABLE `pengadopsi_mengadopsi_hewan`
-  MODIFY `id_pengadopsi_mengadopsi_hewan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pengadopsi_mengadopsi_hewan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `shelter`
