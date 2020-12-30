@@ -1,10 +1,10 @@
 <?php
-require_once '../../constants/constants.php';
+    require_once '../../core/init.php';
 ?>
 
 <?php
-include '../../templates/header.php';
-include '../../templates/sidebar.php';
+    include '../../templates/header.php';
+    include '../../templates/sidebar.php';
 ?>
 
 <!--**********************************
@@ -88,5 +88,5 @@ include '../../templates/sidebar.php';
     ***********************************-->
 
 <?php
-include '../../templates/footer.php';
+    include '../../templates/footer.php';
 ?>

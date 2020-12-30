@@ -4,7 +4,6 @@
     Scripts
 ***********************************-->
 <script src="plugins/common/common.min.js"></script>
-<script src="js/custom.min.js"></script>
 <script src="js/table.min.js"></script>
 <script src="js/settings.js"></script>
 <script src="js/gleek.js"></script>
@@ -34,10 +33,21 @@
 <!-- Form Validation -->
 <script src="./plugins/validation/jquery.validate.min.js"></script>
 <script src="./js/plugins-init/jquery.validate-init.js"></script>
-
-
+<!-- Sweet Alert -->
+<script src="./plugins/sweetalert/js/sweetalert.min.js"></script>
+<script src="./plugins/sweetalert/js/sweetalert.init.js"></script>
+<!-- JQuery UI -->
+<script src="./plugins/jqueryui/js/jquery-ui.min.js"></script>
+<script src="./js/plugins-init/jquery-ui-autocomplete-init.js"></script>
+<!-- Date Picker Plugin JavaScript -->
+<script src="./plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+<script src="./plugins/moment/moment-with-locales.js"></script>
+<script src="./js/plugins-init/form-pickers-init.js"></script>
+<!-- Auto Numeric -->
+<script src="./plugins/auto-numeric/auto-numeric.min.js"></script>
 
 <script src="./js/dashboard/dashboard-1.js"></script>
+<script src="js/custom.min.js"></script>
 
 </body>
 

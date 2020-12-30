@@ -1,10 +1,10 @@
 <?php
-    require_once '../../../constants/constants.php';
+require_once '../../../core/init.php';
 ?>
 
 <?php
-    include '../../../templates/header.php';
-    include '../../../templates/sidebar.php';
+include '../../../templates/header.php';
+include '../../../templates/sidebar.php';
 ?>
 
 <!--**********************************
@@ -46,15 +46,15 @@
                                     <tr>
                                         <td>Tiger Nixon</td>
                                         <td>
-                                        <div class="dropdown-button">
-                                        <div class="text-center" role="group">
-                                            <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button"><i class="fas fa-ellipsis-v"></i></a>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="pages/shelter/kandang/edit-jenis-kandang.php"><i class="far fa-edit"></i> Ubah</a>
-                                                <a class="dropdown-item" href="#"><i class="far fa-trash-alt"></i> Hapus</a>
+                                            <div class="dropdown-button">
+                                                <div class="text-center" role="group">
+                                                    <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button"><i class="fas fa-ellipsis-v"></i></a>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item" href="pages/shelter/kandang/edit-jenis-kandang.php"><i class="far fa-edit"></i> Ubah</a>
+                                                        <a class="dropdown-item" href="pages/shelter/kandang/jenis-kandang.php?id="><i class="far fa-trash-alt"></i> Hapus</a>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        </div>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -78,5 +78,5 @@
     ***********************************-->
 
 <?php
-    include '../../../templates/footer.php';
+include '../../../templates/footer.php';
 ?>

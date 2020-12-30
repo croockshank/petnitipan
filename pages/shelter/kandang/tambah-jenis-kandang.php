@@ -1,5 +1,5 @@
 <?php
-    require_once '../../../constants/constants.php';
+    require_once '../../../core/init.php';
 ?>
 
 <?php
@@ -39,7 +39,7 @@
                                 <div class="form-group row">
                                     <div class="col-lg-2"></div>
                                     <div class="col-lg-10">
-                                        <button type="submit" class="btn btn-primary">Tambah</button>
+                                        <button type="submit" class="btn btn-primary" name="tambah">Tambah</button>
                                     </div>
                                 </div>
                             </form>
@@ -57,4 +57,17 @@
     ***********************************-->
 <?php
     include '../../../templates/footer.php';
+
+    if (is_clicked('tambah')) {
+        $luas = get('val-luas');
+
+        $query = "INSERT INTO jenis_kandang(luas) VALUES ('$luas')";
+        $exe = mysqli_query($conn, $query);
+
+        if ($exe) {
+            swal('success', 'Jenis Kandang berhasil ditambahkan!', 'pages/shelter/kandang/jenis-kandang.php');
+        } else {
+            swal('error', '', '');
+        }
+    }
 ?>

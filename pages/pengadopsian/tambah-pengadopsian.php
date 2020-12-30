@@ -1,9 +1,9 @@
 <?php
-require_once '../../constants/constants.php';
+    require_once '../../core/init.php';
 ?>
 
 <?php
-include '../../templates/header.php';
+    include '../../templates/header.php';
 ?>
 
 <!--**********************************
@@ -40,36 +40,38 @@ include '../../templates/header.php';
                                     <div class="form-validation">
                                         <form class="form-valide" action="" method="post">
                                             <div class="form-group row">
-                                                <label class="col-lg-2 col-form-label" for="val-pengadopsi">Nama Pengadopsi<span class="text-danger">*</span>
+                                                <label class="col-lg-2 col-form-label" for="val-nama-pengadopsi-autocomplete">Nama Pengadopsi<span class="text-danger">*</span>
                                                 </label>
                                                 <div class="col-lg-10">
-                                                    <input type="text" class="form-control" id="val-pengadopsi" name="val-pengadopsi" placeholder="Masukan nama pengadopsi...">
+                                                    <input type="text" class="form-control" id="val-nama-pengadopsi-autocomplete" name="val-nama-pengadopsi-autocomplete" placeholder="Masukan nama pengadopsi...">
+                                                    <input type="hidden" class="form-control" id="val-id-pengadopsi" name="val-id-pengadopsi">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-lg-2 col-form-label" for="val-hewan">Nama Hewan<span class="text-danger">*</span>
+                                                <label class="col-lg-2 col-form-label" for="val-nama-hewan-autocomplete">Nama Hewan<span class="text-danger">*</span>
                                                 </label>
                                                 <div class="col-lg-10">
-                                                    <input type="text" class="form-control" id="val-hewan" name="val-hewan" placeholder="Masukan nama hewan...">
+                                                    <input type="text" class="form-control val-nama-hewan-autocomplete" name="val-nama-hewan-autocomplete" disabled placeholder="Masukan nama hewan...">
+                                                    <input type="hidden" class="form-control val-id-hewan-autocomplete" name="val-id-hewan-autocomplete">
                                                 </div>
                                             </div>
-                                            <fieldset disabled="disabled">
-                                                <div class="form-group row">
-                                                    <label class="col-lg-2 col-form-label" for="val-biaya-adopsi">Biaya<span class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-10">
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend"><span class="input-group-text">Rp</span></div>
-                                                            <input type="text" class="form-control" id="val-biaya-adopsi" name="val-biaya-adopsi">
-                                                            <div class="input-group-append"><span class="input-group-text">,00</span></div>
-                                                        </div>
-                                                        <div class="text-info mt-1">Biaya adopsi dihitung dari biaya pemberian makanan dan pemberian vaksin yang sudah dilakukan</div>
+                                            <div class="form-group row">
+                                                <label class="col-lg-2 col-form-label" for="val-biaya-adopsi">Biaya<span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-10">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend"><span class="input-group-text">Rp</span></div>
+                                                        <input type="text" class="form-control val-biaya-adopsi-disabled" disabled name="val-biaya-adopsi-disabled">
+                                                        <input type="hidden" class="form-control val-biaya-adopsi" name="val-biaya-adopsi">
+                                                        <div class="input-group-append"><span class="input-group-text">,00</span></div>
                                                     </div>
-                                            </fieldset>
+                                                    <div class="text-info mt-1">Biaya adopsi dihitung dari biaya pemberian makanan dan pemberian vaksin yang sudah dilakukan</div>
+                                                </div>
+                                            </div>
                                             <div class="form-group row">
                                                 <div class="col-lg-2"></div>
                                                 <div class="col-lg-10">
-                                                    <button type="submit" class="btn btn-primary">Tambah</button>
+                                                    <button type="submit" class="btn btn-primary" name="tambah-pengadopsi-lama">Tambah</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -107,30 +109,30 @@ include '../../templates/header.php';
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-lg-2 col-form-label" for="val-nama-hewan">Nama Hewan<span class="text-danger">*</span>
+                                                <label class="col-lg-2 col-form-label" for="val-nama-hewan-autocomplete">Nama Hewan<span class="text-danger">*</span>
                                                 </label>
                                                 <div class="col-lg-10">
-                                                    <input type="text" class="form-control" id="val-nama-hewan" name="val-nama-hewan" placeholder="Masukan nama hewan...">
+                                                    <input type="text" class="form-control val-nama-hewan-autocomplete" name="val-nama-hewan-autocomplete" placeholder="Masukan nama hewan...">
+                                                    <input type="hidden" class="form-control val-id-hewan-autocomplete" name="val-id-hewan-autocomplete">
                                                 </div>
                                             </div>
-                                            <fieldset disabled="disabled">
-                                                <div class="form-group row">
-                                                    <label class="col-lg-2 col-form-label" for="val-biaya-adopsi">Biaya<span class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-10">
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend"><span class="input-group-text">Rp</span></div>
-                                                            <input type="text" class="form-control" id="val-biaya-adopsi" name="val-biaya-adopsi">
-                                                            <div class="input-group-append"><span class="input-group-text">,00</span></div>
-                                                        </div>
-                                                        <div class="text-info mt-1">Biaya adopsi dihitung dari biaya pemberian makanan dan pemberian vaksin yang sudah dilakukan</div>
+                                            <div class="form-group row">
+                                                <label class="col-lg-2 col-form-label" for="val-biaya-adopsi">Biaya<span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-10">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend"><span class="input-group-text">Rp</span></div>
+                                                        <input type="text" class="form-control val-biaya-adopsi-disabled" disabled name="val-biaya-adopsi-disabled">
+                                                        <input type="hidden" class="form-control val-biaya-adopsi" name="val-biaya-adopsi">
+                                                        <div class="input-group-append"><span class="input-group-text">,00</span></div>
                                                     </div>
+                                                    <div class="text-info mt-1">Biaya adopsi dihitung dari biaya pemberian makanan dan pemberian vaksin yang sudah dilakukan</div>
                                                 </div>
-                                            </fieldset>
+                                            </div>
                                             <div class="form-group row">
                                                 <div class="col-lg-2"></div>
                                                 <div class="col-lg-10">
-                                                    <button type="submit" class="btn btn-primary">Tambah</button>
+                                                    <button type="submit" class="btn btn-primary" name="tambah-pengadopsi-baru">Tambah</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -149,5 +151,47 @@ include '../../templates/header.php';
         Content body end
     ***********************************-->
     <?php
-    include '../../templates/footer.php';
+        include '../../templates/footer.php';
+    ?>
+
+    <?php
+        if(is_clicked('tambah-pengadopsi-lama')){
+            $id_pengadopsi = get('val-id-pengadopsi');
+            $id_hewan = get('val-id-hewan-autocomplete');
+            $biaya = get('val-biaya-adopsi');
+
+            $query = "INSERT INTO pengadopsi_mengadopsi_hewan(id_pengadopsi, id_hewan, biaya) VALUES ('$id_pengadopsi','$id_hewan','$biaya')";
+            $exe = mysqli_query($conn,$query);
+       
+            if ($exe) {
+                swal('success', 'Pengadopsian berhasil ditambahkan!', 'pages/pengadopsian/pengadopsian.php');
+            } else {
+               swal('error', '', '');
+            }
+        }else if(is_clicked('tambah-pengadopsi-baru')){
+            $nama_pengadopsi = get('val-nama-pengadopsi');
+            $email_pengadopsi = get('val-email-pengadopsi');
+            $alamat_pengadopsi = get('val-alamat-pengadopsi');
+            $no_telepon_pengadopsi = get('val-no-telepon-pengadopsi');
+
+            $query = "INSERT INTO pengadopsi(nama_pengadopsi, alamat, no_telepon, email) VALUES('$nama_pengadopsi', '$alamat_pengadopsi', '$no_telepon_pengadopsi', '$email_pengadopsi')";
+            $exe = mysqli_query($conn,$query);
+
+            if($exe){
+                $id_pengadopsi = mysqli_insert_id($conn);
+                $id_hewan = get('val-id-hewan-autocomplete');
+                $biaya = get('val-biaya-adopsi');
+
+                $query = "INSERT INTO pengadopsi_mengadopsi_hewan(id_pengadopsi, id_hewan, biaya) VALUES ('$id_pengadopsi','$id_hewan','$biaya')";
+                $exe = mysqli_query($conn,$query);
+           
+                if ($exe) {
+                    swal('success', 'Pengadopsian berhasil ditambahkan!', 'pages/pengadopsian/pengadopsian.php');
+                } else {
+                   swal('error', '', '');
+                }
+            }else{
+                swal('error', '', '');
+            }
+        }
     ?>

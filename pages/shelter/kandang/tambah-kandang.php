@@ -1,5 +1,8 @@
 <?php
-    require_once '../../../constants/constants.php';
+    require_once '../../../core/init.php';
+
+    $query = "SELECT * FROM jenis_kandang ORDER BY luas";
+    $jenis_kandang = mysqli_query($conn, $query);
 ?>
 
 <?php
@@ -37,29 +40,25 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label" for="val-jenis-kandang">Jenis<span class="text-danger">*</span>
+                                    <label class="col-lg-2 col-form-label" for="val-jenis-kandang">Jenis(m<sup>2</sup>)<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-10">
                                         <select class="form-control" id="val-jenis-kandang" name="val-jenis-kandang">
-                                            <option value="">Pilih Jenis Kandang</option>
-                                            <option value="html">HTML</option>
-                                            <option value="css">CSS</option>
-                                            <option value="javascript">JavaScript</option>
-                                            <option value="angular">Angular</option>
-                                            <option value="angular">React</option>
-                                            <option value="vuejs">Vue.js</option>
-                                            <option value="ruby">Ruby</option>
-                                            <option value="php">PHP</option>
-                                            <option value="asp">ASP.NET</option>
-                                            <option value="python">Python</option>
-                                            <option value="mysql">MySQL</option>
+                                        <option value="">Pilih Jenis Kandang</option>
+                                            <?php
+                                            foreach ($jenis_kandang as $row) {
+                                            ?>
+                                                <option value="<?=$row['id_jenis_kandang']?>"><?=$row['luas']?></option>
+                                            <?php
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-lg-2"></div>
                                     <div class="col-lg-10">
-                                        <button type="submit" class="btn btn-primary">Tambah</button>
+                                        <button type="submit" class="btn btn-primary" name="tambah">Tambah</button>
                                     </div>
                                 </div>
                             </form>
@@ -76,5 +75,22 @@
         Content body end
     ***********************************-->
 <?php
-    include '../../../templates/footer.php';
+include '../../../templates/footer.php';
+?>
+
+<?php
+    if(is_clicked('tambah')){
+        $nama_kandang = get('val-nama-kandang');
+        $id_shelter = get('id-shelter');
+        $id_jenis_kandang = get('val-jenis-kandang');
+      
+        $query = "INSERT INTO kandang(nama_kandang , id_shelter , id_jenis_kandang) VALUES ('$nama_kandang','$id_shelter','$id_jenis_kandang')";
+        $exe = mysqli_query($conn,$query);
+      
+        if ($exe) {
+            swal('success', 'Kandang berhasil ditambahkan!', 'pages/shelter/kandang/kandang.php');
+        } else {
+            swal('error', '', '');
+        }
+    }
 ?>

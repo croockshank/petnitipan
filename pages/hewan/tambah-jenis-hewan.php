@@ -1,5 +1,5 @@
 <?php
-    require_once '../../constants/constants.php';
+    require_once '../../core/init.php';
 ?>
 
 <?php
@@ -30,16 +30,16 @@
                         <div class="form-validation">
                             <form class="form-valide" name="jenis-kandang" action="" method="post">
                                 <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label" for="val-jenis-kelamin-hewan">Nama<span class="text-danger">*</span>
+                                    <label class="col-lg-2 col-form-label" for="val-nama-jenis-hewan">Nama<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="text" class="form-control" id="val-jenis-kelamin-hewan" name="val-nama-jenis-hewan" placeholder="Masukan nama...">
+                                        <input type="text" class="form-control" id="val-nama-jenis-hewan" name="val-nama-jenis-hewan" placeholder="Masukan nama...">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-lg-2"></div>
                                     <div class="col-lg-10">
-                                        <button type="submit" class="btn btn-primary">Tambah</button>
+                                        <button type="submit" class="btn btn-primary" name="tambah">Tambah</button>
                                     </div>
                                 </div>
                             </form>
@@ -57,4 +57,19 @@
     ***********************************-->
 <?php
     include '../../templates/footer.php';
+?>
+
+<?php
+    if(is_clicked('tambah')){
+        $nama_jenis_hewan = get('val-nama-jenis-hewan');
+        $icon = "fas fa-paw";
+    
+        $query = "INSERT INTO jenis_hewan(nama_jenis_hewan, icon) VALUES ('$nama_jenis_hewan', '$icon')";
+        $exe = mysqli_query($conn,$query);
+        if ($exe) {
+            swal('success', 'Jenis hewan berhasil ditambahkan!', 'pages/hewan/jenis-hewan.php');
+        } else {
+            swal('error', '', '');
+        }
+    }
 ?>

@@ -1,5 +1,5 @@
 <?php
-    require_once '../../constants/constants.php';
+    require_once '../../core/init.php';
 ?>
 
 <?php
@@ -53,7 +53,7 @@
                                 <div class="form-group row">
                                     <div class="col-lg-2"></div>
                                     <div class="col-lg-10">
-                                        <button type="submit" class="btn btn-primary">Tambah</button>
+                                        <button type="submit" class="btn btn-primary" name="tambah">Tambah</button>
                                     </div>
                                 </div>
                             </form>
@@ -71,4 +71,25 @@
     ***********************************-->
 <?php
     include '../../templates/footer.php';
+?>
+
+<?php
+    if(is_clicked('tambah')){
+        $nama = get('val-nama-administrator');
+        $username = get('val-username');
+        $password = get('val-password-required');
+        $id_shelter = get('id-shelter');
+    
+        $password_enc = password_hash($password,PASSWORD_DEFAULT);
+
+        $query = "INSERT INTO administrator(nama, username, password, id_shelter) VALUES ('$nama', '$username', '$password_enc', '$id_shelter')";
+        $exe = mysqli_query($conn,$query);
+    
+        if ($exe) {
+            swal('success', 'Administrator berhasil ditambahkan!', 'pages/shelter/administrator.php');
+        } else {
+            swal('error', '', '');
+        }
+
+    }
 ?>

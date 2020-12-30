@@ -1,9 +1,14 @@
 <?php
-require_once '../../constants/constants.php';
+    require_once '../../core/init.php';
+
+    $query_jenis_hewan = "SELECT * FROM jenis_hewan ORDER BY nama_jenis_hewan";
+    $query_kandang = "SELECT * FROM kandang ORDER BY nama_kandang";
+    $jenis_hewan = mysqli_query($conn, $query_jenis_hewan);
+    $kandang = mysqli_query($conn, $query_kandang);
 ?>
 
 <?php
-include '../../templates/header.php';
+    include '../../templates/header.php';
 ?>
 
 <!--**********************************
@@ -42,8 +47,13 @@ include '../../templates/header.php';
                                     <div class="col-lg-10">
                                         <select class="form-control" id="val-jenis-hewan" name="val-jenis-hewan">
                                             <option value="">Pilih Jenis Hewan</option>
-                                            <option value="html">HTML</option>
-                                            <option value="css">CSS</option>
+                                            <?php
+                                                foreach($jenis_hewan as $row){
+                                            ?>
+                                                    <option value="<?= $row['id_jenis_hewan'] ?>"><?= $row['nama_jenis_hewan'] ?></option>
+                                            <?php
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
@@ -53,8 +63,13 @@ include '../../templates/header.php';
                                     <div class="col-lg-10">
                                         <select class="form-control" id="val-kandang" name="val-kandang">
                                             <option value="">Pilih Kandang</option>
-                                            <option value="html">HTML</option>
-                                            <option value="css">CSS</option>
+                                            <?php
+                                                foreach($kandang as $row){
+                                            ?>
+                                                    <option value="<?= $row['id_kandang'] ?>"><?= $row['nama_kandang'] ?></option>
+                                            <?php
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
@@ -107,5 +122,9 @@ include '../../templates/header.php';
         Content body end
     ***********************************-->
 <?php
-include '../../templates/footer.php';
+    include '../../templates/footer.php';
+?>
+
+<?php
+    
 ?>
