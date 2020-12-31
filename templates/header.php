@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <!-- Base URL -->
     <base href="<?=url()?>">
-    <title>Pet Shelter</title>
+    <title>Petnitipan</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/icon.png">
     <!-- Pignose Calender -->
@@ -28,6 +28,14 @@
 </head>
 
 <body>
+
+    <!-- Login first -->
+    <?php
+        if(!get('id-administrator')){
+            $_SESSION['login-first'] = true;
+            echo "<script> window.location.replace('./auth/login.php') </script>";
+        }
+    ?>
 
     <!--*******************
         Preloader start
@@ -226,7 +234,7 @@
                                         <li>
                                             <a href="page-lock.html"><i class="icon-lock"></i> <span>Lock Screen</span></a>
                                         </li>
-                                        <li><a href="page-login.html"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                        <li><a href="./auth/logout.php"><i class="icon-key"></i> <span>Sign Out</span></a></li>
                                     </ul>
                                 </div>
                             </div>

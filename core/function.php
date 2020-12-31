@@ -16,6 +16,8 @@
 			return $_GET[$name];
 		}else if(isset($_FILES[$name])){
             return $_FILES[$name];
+        }else if(isset($_SESSION[$name])){
+            return $_SESSION[$name];
         }else if(isset($_COOKIE[$name])){
             return $_COOKIE[$name];
         }
