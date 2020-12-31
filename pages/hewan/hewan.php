@@ -34,7 +34,7 @@
                                 <h4 class="card-title">Hewan</h4>
                             </div>
                             <div class="col-6 text-right">
-                                <a href="pages/hewan/tambah-hewan.php" class="btn mb-1 btn-primary">Tambah <span class="btn-icon-right"><i class="fa fa-plus"></i></span></a>
+                                <a href="pages/hewan/tambah-hewan.php" class="btn mb-1 btn-secondary">Tambah <span class="btn-icon-right"><i class="fa fa-plus"></i></span></a>
                             </div>
                         </div>
                         <!-- Nav tabs -->

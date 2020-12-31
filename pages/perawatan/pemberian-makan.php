@@ -2,7 +2,7 @@
     require_once '../../core/init.php';
 
     $id_shelter = get('id-shelter');
-    $result = mysqli_query($conn, "SELECT hm.id_hewan_mendapatkan_makanan, h.foto, h.nama_hewan, jh.nama_jenis_hewan, h.jenis_kelamin, jh.icon, k.nama_kandang, m.nama_makanan, hm.jumlah, hm.waktu FROM hewan_mendapatkan_makanan hm INNER JOIN makanan m ON m.id_makanan = hm.id_makanan INNER JOIN hewan h ON hm.id_hewan = h.id_hewan INNER JOIN jenis_hewan jh ON h.id_jenis_hewan = jh.id_jenis_hewan INNER JOIN kandang k ON h.id_kandang = k.id_kandang WHERE h.id_shelter = '$id_shelter' AND h.status = 1");
+    $result = mysqli_query($conn, "SELECT hm.id_hewan_mendapatkan_makanan, h.foto, h.nama_hewan, jh.nama_jenis_hewan, h.jenis_kelamin, jh.icon, k.nama_kandang, m.nama_makanan, hm.jumlah, hm.waktu FROM hewan_mendapatkan_makanan hm INNER JOIN makanan m ON m.id_makanan = hm.id_makanan INNER JOIN hewan h ON hm.id_hewan = h.id_hewan INNER JOIN jenis_hewan jh ON h.id_jenis_hewan = jh.id_jenis_hewan INNER JOIN kandang k ON h.id_kandang = k.id_kandang WHERE h.id_shelter = '$id_shelter' AND h.status = 1 ");
 ?>
 
 <?php
@@ -34,7 +34,7 @@
                                 <h4 class="card-title">Pemberian Makan</h4>
                             </div>
                             <div class="col-6 text-right">
-                                <a href="pages/perawatan/tambah-pemberian-makan.php" class="btn mb-1 btn-primary">Tambah <span class="btn-icon-right"><i class="fa fa-plus"></i></span></a>
+                                <a href="pages/perawatan/tambah-pemberian-makan.php" class="btn mb-1 btn-secondary">Tambah <span class="btn-icon-right"><i class="fa fa-plus"></i></span></a>
                             </div>
                         </div>
                         <div class="table-responsive">

@@ -105,7 +105,7 @@
                                 <div class="form-group row">
                                     <div class="col-lg-2"></div>
                                     <div class="col-lg-10">
-                                        <button type="submit" class="btn btn-primary">Tambah</button>
+                                        <button type="submit" class="btn btn-secondary">Tambah</button>
                                     </div>
                                 </div>
                             </form>

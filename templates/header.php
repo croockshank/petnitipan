@@ -9,7 +9,7 @@
     <base href="<?=url()?>">
     <title>Pet Shelter</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/icon.png">
     <!-- Pignose Calender -->
     <link href="./plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
     <!-- Chartist -->
@@ -54,10 +54,10 @@
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="index.html">
-                    <b class="logo-abbr"><img src="#" alt=""> </b>
-                    <span class="logo-compact"><img src="#" alt=""></span>
+                <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
+                    <span class="logo-compact"><img src="images/logo.png" alt=""></span>
                     <span class="brand-title">
-                        <img src="#" alt="">
+                        <img src="images/logo-text.png" alt="">
                     </span>
                 </a>
             </div>
@@ -80,8 +80,8 @@
                 <div class="header-right">
                     <ul class="clearfix">
                         <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
-                                <i class="mdi mdi-email-outline"></i>
-                                <span class="badge badge-pill gradient-1">3</span>
+<!--                                 <i class="mdi mdi-email-outline"></i>
+                                <span class="badge badge-pill gradient-1">3</span> -->
                             </a>
                             <div class="drop-down animated fadeIn dropdown-menu">
                                 <div class="dropdown-content-heading d-flex justify-content-between">
@@ -138,8 +138,8 @@
                             </div>
                         </li>
                         <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
-                                <i class="mdi mdi-bell-outline"></i>
-                                <span class="badge badge-pill gradient-2">3</span>
+<!--                                 <i class="mdi mdi-bell-outline"></i>
+                                <span class="badge badge-pill gradient-2">3</span> -->
                             </a>
                             <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication">
                                 <div class="dropdown-content-heading d-flex justify-content-between">
@@ -192,9 +192,9 @@
                             </div>
                         </li>
                         <li class="icons dropdown d-none d-md-flex">
-                            <a href="javascript:void(0)" class="log-user" data-toggle="dropdown">
+<!--                             <a href="javascript:void(0)" class="log-user" data-toggle="dropdown">
                                 <span>English</span> <i class="fa fa-angle-down f-s-14" aria-hidden="true"></i>
-                            </a>
+                            </a> -->
                             <div class="drop-down dropdown-language animated fadeIn  dropdown-menu">
                                 <div class="dropdown-content-body">
                                     <ul>

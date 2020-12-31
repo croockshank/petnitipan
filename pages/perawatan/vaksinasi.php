@@ -34,7 +34,7 @@
                                 <h4 class="card-title">Vaksinasi</h4>
                             </div>
                             <div class="col-6 text-right">
-                                <a href="pages/perawatan/tambah-vaksinasi.php" class="btn mb-1 btn-primary">Tambah <span class="btn-icon-right"><i class="fa fa-plus"></i></span></a>
+                                <a href="pages/perawatan/tambah-vaksinasi.php" class="btn mb-1 btn-secondary">Tambah <span class="btn-icon-right"><i class="fa fa-plus"></i></span></a>
                             </div>
                         </div>
                         <div class="table-responsive">
