@@ -150,7 +150,7 @@ function swalConfirmation(message, redirectLocation) {
       confirmButtonText: "Ya",
       cancelButtonText: "Tidak",
       closeOnConfirm: !1,
-      closeOnCancel: !1,
+      closeOnCancel: true,
     },
     function (e) {
       if (e) {

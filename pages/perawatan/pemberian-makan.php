@@ -1,5 +1,8 @@
 <?php
     require_once '../../core/init.php';
+
+    $id_shelter = get('id-shelter');
+    $result = mysqli_query($conn, "SELECT hm.id_hewan_mendapatkan_makanan, h.foto, h.nama_hewan, jh.nama_jenis_hewan, h.jenis_kelamin, jh.icon, k.nama_kandang, m.nama_makanan, hm.jumlah, hm.waktu FROM hewan_mendapatkan_makanan hm INNER JOIN makanan m ON m.id_makanan = hm.id_makanan INNER JOIN hewan h ON hm.id_hewan = h.id_hewan INNER JOIN jenis_hewan jh ON h.id_jenis_hewan = jh.id_jenis_hewan INNER JOIN kandang k ON h.id_kandang = k.id_kandang WHERE h.id_shelter = '$id_shelter' AND h.status = 1");
 ?>
 
 <?php
@@ -43,28 +46,36 @@
                                         <th>Kandang</th>
                                         <th>Nama Makanan</th>
                                         <th>Jumlah</th>
+                                        <td>Waktu</td>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <?php
+                                    foreach($result as $row){
+                                ?>                                    
                                     <tr>
-                                        <td> <img src="./images/avatar/1.jpg" class="rounded-circle mr-3" alt=""> Tiger Nixon</td>
-                                        <td><i class="fas fa-paw mr-1"></i>Paw</td>
-                                        <td>Cage A</td>
-                                        <td>Male</td>
-                                        <td><span class="label gradient-3 rounded">3</span></td>
+                                        <td> <img src="<?=$row['foto']?>" class="rounded-circle mr-3" alt=""> <?=$row['nama_hewan']?> </td>
+                                        <td><i class="<?=$row['icon']?> mr-1"></i><?=$row['nama_jenis_hewan']?></td>
+                                        <td><?=$row['nama_kandang']?></td>
+                                        <td><?=$row['jenis_kelamin']?></td>
+                                        <td><span class="label gradient-3 rounded"><?=$row['jumlah']?></span></td>
+                                        <td><?=format_date_prettier($row['waktu'])?></td>
                                         <td>
                                         <div class="dropdown-button">
                                         <div class="text-center" role="group">
                                             <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button"><i class="fas fa-ellipsis-v"></i></a>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="pages/perawatan/edit-pemberian-makan.php"><i class="far fa-edit"></i> Ubah</a>
-                                                <a class="dropdown-item" href="#"><i class="far fa-trash-alt"></i> Hapus</a>
+                                                <a class="dropdown-item" href="pages/perawatan/edit-pemberian-makan.php?id=<?=$row['id_hewan_mendapatkan_makanan']?>"><i class="far fa-edit"></i> Ubah</a>
+                                                <a class="dropdown-item" href="pages/perawatan/pemberian-makan.php?id=<?=$row['id_hewan_mendapatkan_makanan']?>"><i class="far fa-trash-alt"></i> Hapus</a>
                                             </div>
                                         </div>
                                         </div>
                                         </td>
                                     </tr>
+                                <?php
+                                    }
+                                ?>                                      
                                 </tbody>
                                 <tfoot>
                                     <tr>
@@ -73,6 +84,7 @@
                                         <th>Kandang</th>
                                         <th>Nama Makanan</th>
                                         <th>Jumlah</th>
+                                        <td>Waktu</td>
                                         <th></th>
                                     </tr>
                                 </tfoot>
@@ -91,4 +103,22 @@
 
 <?php
     include '../../templates/footer.php';
+?>
+
+<?php
+    if(is_param_exist('id') && !is_param_exist('delete')){
+        $id_pemberian_makan = get('id');
+        swal('confirmation', 'Pemberian makan akan terhapus', 'pages/perawatan/pemberian-makan.php?id=' . $id_pemberian_makan .'&delete');
+    }else if(is_param_exist('id') && is_param_exist('delete')){
+        $id_pemberian_makan = get('id');
+
+        $query = "DELETE FROM hewan_mendapatkan_makanan WHERE id_hewan_mendapatkan_makanan = $id_pemberian_makan";
+        $exe = mysqli_query($conn,$query);
+    
+        if ($exe) {
+            swal('success', 'Pemberian makan berhasil dihapus!', 'pages/perawatan/pemberian-makan.php');
+        } else {
+            swal('error', '', '');
+        }
+    }
 ?>

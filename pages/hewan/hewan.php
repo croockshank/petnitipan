@@ -1,10 +1,13 @@
 <?php
-require_once '../../core/init.php';
+    require_once '../../core/init.php';
+
+    $result_belum_teradopsi = mysqli_query($conn, "SELECT h.id_hewan, h.foto, h.nama_hewan, jh.nama_jenis_hewan, jh.icon, k.nama_kandang, h.jenis_kelamin, h.panjang, h.berat, h.status FROM hewan h INNER JOIN jenis_hewan jh ON jh.id_jenis_hewan = h.id_jenis_hewan INNER JOIN kandang k ON k.id_kandang = h.id_kandang WHERE h.status = 1");
+    $result_teradopsi = mysqli_query($conn, "SELECT h.id_hewan, h.foto, h.nama_hewan, jh.nama_jenis_hewan, jh.icon, k.nama_kandang, h.jenis_kelamin, h.panjang, h.berat, h.status FROM hewan h INNER JOIN jenis_hewan jh ON jh.id_jenis_hewan = h.id_jenis_hewan INNER JOIN kandang k ON k.id_kandang = h.id_kandang WHERE h.status = 2");
 ?>
 
 <?php
-include '../../templates/header.php';
-include '../../templates/sidebar.php';
+    include '../../templates/header.php';
+    include '../../templates/sidebar.php';
 ?>
 
 <!--**********************************
@@ -59,26 +62,32 @@ include '../../templates/sidebar.php';
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td> <img src="./images/avatar/1.jpg" class="rounded-circle mr-3" alt=""> Tiger Nixon</td>
-                                                    <td><i class="fas fa-paw mr-1"></i>Paw</td>
-                                                    <td>Cage A</td>
-                                                    <td>Male</td>
-                                                    <td>80</td>
-                                                    <td>3</td>
-                                                    <td><span class="label gradient-1 rounded">Baru</span></td>
-                                                    <td>
-                                                        <div class="dropdown-button">
-                                                            <div class="text-center" role="group">
-                                                                <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button"><i class="fas fa-ellipsis-v"></i></a>
-                                                                <div class="dropdown-menu">
-                                                                    <a class="dropdown-item" href="pages/hewan/edit-hewan.php"><i class="far fa-edit"></i> Ubah</a>
-                                                                    <a class="dropdown-item" href="#"><i class="far fa-trash-alt"></i> Hapus</a>
+                                            <?php
+                                                foreach($result_belum_teradopsi as $row){
+                                            ?>
+                                                    <tr>
+                                                        <td> <img src="<?=$row['foto']?>" class="rounded-circle mr-3" alt=""><?=$row['nama_hewan']?></td>
+                                                        <td><i class="<?=$row['icon']?> mr-3"></i><?=$row['nama_jenis_hewan']?></td>
+                                                        <td><?=$row['nama_kandang']?></td>
+                                                        <td><?=$row['jenis_kelamin']?></td>
+                                                        <td><?=$row['panjang']?></td>
+                                                        <td><?=$row['berat']?></td>
+                                                        <td><span class="label gradient-1 rounded">Belum Teradopsi</span></td>
+                                                        <td>
+                                                            <div class="dropdown-button">
+                                                                <div class="text-center" role="group">
+                                                                    <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button"><i class="fas fa-ellipsis-v"></i></a>
+                                                                    <div class="dropdown-menu">
+                                                                        <a class="dropdown-item" href="pages/hewan/edit-hewan.php?id=<?=$row['id_hewan']?>"><i class="far fa-edit"></i> Ubah</a>
+                                                                        <a class="dropdown-item" href="pages/hewan/hewan.php?id=<?=$row['id_hewan']?>"><i class="far fa-trash-alt"></i> Hapus</a>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                        </td>
+                                                    </tr>
+                                            <?php
+                                                }
+                                            ?>
                                             </tbody>
                                             <tfoot>
                                                 <tr>
@@ -110,15 +119,32 @@ include '../../templates/sidebar.php';
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td><img src="./images/avatar/2.jpg" class="rounded-circle mr-3" alt=""> Tiger Nixon</td>
-                                                    <td> <i class="fas fa-paw mr-1"></i> Paw</td>
-                                                    <td>Cage A</td>
-                                                    <td>Male</td>
-                                                    <td>80</td>
-                                                    <td>3</td>
-                                                    <td><span class="label gradient-2 rounded">Teradopsi</span></td>
-                                                </tr>
+                                            <?php
+                                                foreach($result_teradopsi as $row){
+                                            ?>
+                                                    <tr>
+                                                        <td> <img src="<?=$row['foto']?>" class="rounded-circle mr-3" alt=""><?=$row['nama_hewan']?></td>
+                                                        <td><i class="<?=$row['icon']?> mr-3"></i><?=$row['nama_jenis_hewan']?></td>
+                                                        <td><?=$row['nama_kandang']?></td>
+                                                        <td><?=$row['jenis_kelamin']?></td>
+                                                        <td><?=$row['panjang']?></td>
+                                                        <td><?=$row['berat']?></td>
+                                                        <td><span class="label gradient-2 rounded">Teradopsi</span></td>
+                                                        <td>
+                                                            <div class="dropdown-button">
+                                                                <div class="text-center" role="group">
+                                                                    <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button"><i class="fas fa-ellipsis-v"></i></a>
+                                                                    <div class="dropdown-menu">
+                                                                    <a class="dropdown-item" href="pages/hewan/edit-hewan.php?id=<?=$row['id_hewan']?>"><i class="far fa-edit"></i> Ubah</a>
+                                                                    <a class="dropdown-item" href="pages/hewan/hewan.php?id=<?=$row['id_hewan']?>"><i class="far fa-trash-alt"></i> Hapus</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                            <?php
+                                                }
+                                            ?>
                                             </tbody>
                                             <tfoot>
                                                 <tr>
@@ -148,5 +174,23 @@ include '../../templates/sidebar.php';
     ***********************************-->
 
 <?php
-include '../../templates/footer.php';
+    include '../../templates/footer.php';
+?>
+
+<?php
+    if(is_param_exist('id') && !is_param_exist('delete')){
+        $id_hewan = get('id');
+        swal('confirmation', 'Kebutuhan, perawatan, dan pengadopsian tentang hewan ini akan ikut terhapus', 'pages/hewan/hewan.php?id=' . $id_hewan .'&delete');
+    }else if(is_param_exist('id') && is_param_exist('delete')){
+        $id_hewan = get('id');
+
+        $query = "DELETE FROM hewan WHERE id_hewan = $id_hewan";
+        $exe = mysqli_query($conn,$query);
+    
+        if ($exe) {
+            swal('success', 'Hewan berhasil dihapus!', 'pages/hewan/hewan.php');
+        } else {
+            swal('error', '', '');
+        }
+    }
 ?>

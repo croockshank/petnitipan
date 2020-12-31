@@ -1,10 +1,12 @@
 <?php
-require_once '../../../core/init.php';
+    require_once '../../../core/init.php';
+
+    $result = mysqli_query($conn,"SELECT * FROM jenis_kandang ORDER BY id_jenis_kandang DESC");
 ?>
 
 <?php
-include '../../../templates/header.php';
-include '../../../templates/sidebar.php';
+    include '../../../templates/header.php';
+    include '../../../templates/sidebar.php';
 ?>
 
 <!--**********************************
@@ -43,20 +45,26 @@ include '../../../templates/sidebar.php';
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Tiger Nixon</td>
-                                        <td>
-                                            <div class="dropdown-button">
-                                                <div class="text-center" role="group">
-                                                    <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button"><i class="fas fa-ellipsis-v"></i></a>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="pages/shelter/kandang/edit-jenis-kandang.php"><i class="far fa-edit"></i> Ubah</a>
-                                                        <a class="dropdown-item" href="pages/shelter/kandang/jenis-kandang.php?id="><i class="far fa-trash-alt"></i> Hapus</a>
+                                    <?php
+                                        foreach($result as $row){
+                                    ?>
+                                        <tr>
+                                            <td><?=$row['luas']?></td>
+                                            <td>
+                                                <div class="dropdown-button">
+                                                    <div class="text-center" role="group">
+                                                        <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button"><i class="fas fa-ellipsis-v"></i></a>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" href="pages/shelter/kandang/edit-jenis-kandang.php?id=<?=$row['id_jenis_kandang']?>"><i class="far fa-edit"></i> Ubah</a>
+                                                            <a class="dropdown-item" href="pages/shelter/kandang/jenis-kandang.php?id=<?=$row['id_jenis_kandang']?>"><i class="far fa-trash-alt"></i> Hapus</a>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
@@ -78,5 +86,23 @@ include '../../../templates/sidebar.php';
     ***********************************-->
 
 <?php
-include '../../../templates/footer.php';
+    include '../../../templates/footer.php';
+?>
+
+<?php
+    if(is_param_exist('id') && !is_param_exist('delete')){
+        $id_jenis_kandang = get('id');
+        swal('confirmation', 'Semua kandang yang berjenis ini akan ikut terhapus', 'pages/shelter/kandang/jenis-kandang.php?id=' . $id_jenis_kandang .'&delete');
+    }else if(is_param_exist('id') && is_param_exist('delete')){
+        $id_jenis_kandang = get('id');
+
+        $query = "DELETE FROM jenis_kandang WHERE id_jenis_kandang = $id_jenis_kandang";
+        $exe = mysqli_query($conn,$query);
+    
+        if ($exe) {
+            swal('success', 'Jenis Kandang berhasil dihapus!', 'pages/shelter/kandang/jenis-kandang.php');
+        } else {
+            swal('error', '', '');
+        }
+    }
 ?>

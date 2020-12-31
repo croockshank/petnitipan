@@ -1,5 +1,9 @@
 <?php
-    require_once '../../constants/constants.php';
+    require_once '../../core/init.php';
+
+    $id_jenis_hewan = get('id');
+    $exe = mysqli_query($conn,"SELECT * FROM jenis_hewan WHERE id_jenis_hewan ='$id_jenis_hewan'");
+    $result = mysqli_fetch_assoc($exe);
 ?>
 
 <?php
@@ -33,7 +37,7 @@
                                     <label class="col-lg-2 col-form-label" for="val-nama-jenis-hewan">Nama<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="text" class="form-control" id="val-nama-jenis-hewan" name="val-nama-jenis-hewan" placeholder="Masukan nama...">
+                                        <input type="text" class="form-control" id="val-nama-jenis-hewan" name="val-nama-jenis-hewan" placeholder="Masukan nama..." value="<?=$result['nama_jenis_hewan']?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">

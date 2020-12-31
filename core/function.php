@@ -24,12 +24,19 @@
         return isset($_POST[$name]);
     }
 
+    function is_param_exist($name){
+        return isset($_GET[$name]);
+    }
+
     function swal($type, $message, $action){
         $result;
 
         switch($type){
             case 'success':
                 $result = "swalSuccess('$message', '$action')";
+                break;
+            case 'confirmation':
+                $result = "swalConfirmation('$message', '$action')";
                 break;
             case 'error':
                 $result = "swalError('$message')";
@@ -44,7 +51,27 @@
         return date('Y-m-d H:i:s', $date);
     }
 
+    function format_date_prettier($raw_date){
+        $date = strtotime($raw_date);
+        return date('D, d M Y H:i', $date);
+    }
+
+    function format_date_only_pretier($raw_date){
+        $date = strtotime($raw_date);
+        return date('D, d M Y', $date);
+    }
+
     function replace_price_separator($price){
         return str_replace(['.', ','], ['', ''], $price);
+    }
+
+    function number_separator($number){
+        return number_format($number ,0 ,"",".");
+    }
+
+    function format_rupiah($angka){
+        $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+        return $hasil_rupiah;
+     
     }
 ?>

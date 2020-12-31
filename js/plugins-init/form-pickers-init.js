@@ -2,7 +2,7 @@
     "use strict"
 
     $('#date-format').bootstrapMaterialDatePicker({
-        format: 'dddd, DD MMMM YYYY HH:mm',
+        format: 'ddd, DD MMM YYYY HH:mm',
         nowButton: true,
         lang: 'id'
     });

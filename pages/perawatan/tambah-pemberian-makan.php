@@ -34,8 +34,8 @@ include '../../templates/header.php';
                                     </label>
                                     <div class="col-lg-10">
                                         <input type="text" class="form-control" id="val-nama-hewan-autocomplete" name="val-nama-hewan" placeholder="Masukan nama hewan...">
-                                        <input type="hidden" class="form-control" id="val-id-hewan-autocomplete" name="val-id-hewan-autocomplete">
-                                        <input type="hidden" class="form-control" id="val-id-jenis-hewan-autocomplete" name="val-id-jenis-hewan-autocomplete">
+                                        <input type="hidden" class="form-control" id="val-id-hewan-autocomplete" name="val-id-hewan">
+                                        <input type="hidden" class="form-control" id="val-id-jenis-hewan-autocomplete" name="val-id-jenis-hewan">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -43,7 +43,7 @@ include '../../templates/header.php';
                                     <a type="button" class="ml-1" tabindex="0" role="button" data-toggle="popover" data-html="true" data-trigger="focus" data-content="Pastikan anda telah menambahkan makanan sesuai jenis hewan tersebut <a href='pages/kebutuhan/tambah-makanan.php' class='text-primary'>disini</a>"><i class="fas fa-question-circle"></i></a>
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="text" class="form-control" id="val-nama-makanan" name="val-nama-makanan" disabled placeholder="Masukan nama makanan...">
+                                        <input type="text" class="form-control" id="val-nama-makanan-autocomplete" name="val-nama-makanan" disabled placeholder="Masukan nama makanan...">
                                         <input type="hidden" class="form-control" id="val-id-makanan" name="val-id-makanan">
                                     </div>
                                 </div>
@@ -91,8 +91,8 @@ include '../../templates/footer.php';
 
 <?php
     if(is_clicked('tambah')){
-        $id_hewan = get('val-id-hewan-autocomplete');
-        $id_makanan = get('val-id-makanan-autocomplete');
+        $id_hewan = get('val-id-hewan');
+        $id_makanan = get('val-id-makanan');
         $jumlah = get('val-jumlah-makanan-validated');
         $waktu = format_date(get('val-waktu'));
     

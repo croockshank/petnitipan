@@ -1,9 +1,13 @@
 <?php
-require_once '../../constants/constants.php';
+    require_once '../../core/init.php';
+
+    $id_pemberian_makan = get('id');
+    $exe = mysqli_query($conn, "SELECT hm.id_hewan_mendapatkan_makanan, h.id_hewan, h.id_jenis_hewan, h.nama_hewan, jh.nama_jenis_hewan, h.jenis_kelamin, m.id_makanan, m.nama_makanan, hm.jumlah, m.jumlah AS jumlah_makanan, hm.waktu FROM hewan_mendapatkan_makanan hm INNER JOIN makanan m ON m.id_makanan = hm.id_makanan INNER JOIN hewan h ON hm.id_hewan = h.id_hewan INNER JOIN jenis_hewan jh ON h.id_jenis_hewan = jh.id_jenis_hewan INNER JOIN kandang k ON h.id_kandang = k.id_kandang WHERE hm.id_hewan_mendapatkan_makanan = '$id_pemberian_makan'");
+    $result = mysqli_fetch_assoc($exe);
 ?>
 
 <?php
-include '../../templates/header.php';
+    include '../../templates/header.php';
 ?>
 
 <!--**********************************
@@ -30,30 +34,46 @@ include '../../templates/header.php';
                         <div class="form-validation">
                             <form class="form-valide" action="" method="post">
                                 <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label" for="val-nama-hewan">Nama Hewan<span class="text-danger">*</span>
+                                    <label class="col-lg-2 col-form-label" for="val-nama-hewan-autocomplete">Nama Hewan<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="text" class="form-control" id="val-nama-hewan" name="val-nama-hewan" placeholder="Masukan nama hewan...">
+                                        <input type="text" class="form-control" id="val-nama-hewan-autocomplete" name="val-nama-hewan" placeholder="Masukan nama hewan..." value="<?=$result['nama_hewan']?>">
+                                        <input type="hidden" class="form-control" id="val-id-hewan-autocomplete" name="val-id-hewan" value="<?=$result['id_hewan']?>">
+                                        <input type="hidden" class="form-control" id="val-id-jenis-hewan-autocomplete" name="val-id-jenis-hewan" value="<?=$result['id_jenis_hewan']?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label" for="val-nama-makanan">Nama Makanan<span class="text-danger">*</span>
+                                    <label class="col-lg-2 col-form-label" for="val-nama-makanan-autocomplete">Nama Makanan<span class="text-danger">*</span>
+                                    <a type="button" class="ml-1" tabindex="0" role="button" data-toggle="popover" data-html="true" data-trigger="focus" data-content="Pastikan anda telah menambahkan makanan sesuai jenis hewan tersebut <a href='pages/kebutuhan/tambah-makanan.php' class='text-primary'>disini</a>"><i class="fas fa-question-circle"></i></a>
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="text" class="form-control" id="val-nama-makanan" name="val-nama-makanan" placeholder="Masukan nama makanan...">
+                                        <input type="text" class="form-control" id="val-nama-makanan-autocomplete" name="val-nama-makanan" placeholder="Masukan nama makanan..." value="<?=$result['nama_makanan']?>">
+                                        <input type="hidden" class="form-control" id="val-id-makanan" name="val-id-makanan" value="<?=$result['id_makanan']?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label" for="val-jumlah-makanan">Jumlah(gr)<span class="text-danger">*</span>
+                                    <label class="col-lg-2 col-form-label" for="val-jumlah-makanan-validated">Jumlah(gr)<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="number" class="form-control" id="val-jumlah-makanan" name="val-jumlah-makanan" placeholder="Masukan jumlah makanan...">
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" id="val-jumlah-makanan-validated" name="val-jumlah-makanan-validated" placeholder="Masukan jumlah makanan..." value="<?=$result['jumlah']?>">
+                                            <div class="input-group-append"><span class="input-group-text">dari &nbsp; <span id="val-label-jumlah-makanan"><?=$result['jumlah_makanan']?></span></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-2 col-form-label" for="val-tanggal">Waktu<span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-10">
+                                        <div class="input-group">
+                                            <input type="text" id="date-format" class="form-control" placeholder="Masukkan waktu..." name="val-waktu" value="<?=format_date_prettier($result['waktu'])?>">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-lg-2"></div>
                                     <div class="col-lg-10">
-                                        <button type="submit" class="btn btn-primary">Ubah</button>
+                                        <button type="submit" class="btn btn-primary" name="ubah">Ubah</button>
                                     </div>
                                 </div>
                             </form>

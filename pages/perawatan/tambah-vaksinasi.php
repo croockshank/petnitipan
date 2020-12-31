@@ -34,8 +34,8 @@
                                     </label>
                                     <div class="col-lg-10">
                                         <input type="text" class="form-control" id="val-nama-hewan-autocomplete" name="val-nama-hewan" placeholder="Masukan nama hewan...">
-                                        <input type="hidden" class="form-control" id="val-id-hewan-autocomplete" name="val-id-hewan-autocomplete">
-                                        <input type="hidden" class="form-control" id="val-id-jenis-hewan-autocomplete" name="val-id-jenis-hewan-autocomplete">
+                                        <input type="hidden" class="form-control" id="val-id-hewan-autocomplete" name="val-id-hewan">
+                                        <input type="hidden" class="form-control" id="val-id-jenis-hewan-autocomplete" name="val-id-jenis-hewan">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -43,7 +43,7 @@
                                     <a type="button" class="ml-1" tabindex="0" role="button" data-toggle="popover" data-html="true" data-trigger="focus" data-content="Pastikan anda telah menambahkan vaksin sesuai jenis hewan tersebut <a href='pages/kebutuhan/tambah-vaksin.php' class='text-primary'>disini</a>"><i class="fas fa-question-circle"></i></a>
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="text" class="form-control" id="val-nama-vaksin" name="val-nama-vaksin" disabled placeholder="Masukan nama vaksin...">
+                                        <input type="text" class="form-control" id="val-nama-vaksin-autocomplete" name="val-nama-vaksin" disabled placeholder="Masukan nama vaksin...">
                                         <input type="hidden" class="form-control" id="val-id-vaksin" name="val-id-vaksin">
                                     </div>
                                 </div>
@@ -91,8 +91,8 @@
 
 <?php
     if(is_clicked('tambah')){
-        $id_hewan = get('val-id-hewan-autocomplete');
-        $id_vaksin = get('val-id-vaksin-autocomplete');
+        $id_hewan = get('val-id-hewan');
+        $id_vaksin = get('val-id-vaksin');
         $jumlah = get('val-jumlah-vaksin-validated');
         $waktu = format_date(get('val-waktu'));
      

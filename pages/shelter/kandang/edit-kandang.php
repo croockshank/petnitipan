@@ -1,5 +1,12 @@
 <?php
-    require_once '../../../constants/constants.php';
+    require_once '../../../core/init.php';
+
+    $id_kandang = get('id');
+    $exe = mysqli_query($conn,"SELECT * FROM kandang WHERE id_kandang ='$id_kandang'");
+    $result = mysqli_fetch_assoc($exe);
+
+    $query = "SELECT * FROM jenis_kandang ORDER BY luas";
+    $jenis_kandang = mysqli_query($conn, $query);
 ?>
 
 <?php
@@ -28,32 +35,28 @@
                     <div class="card-body">
                         <h4 class="card-title">Ubah Kandang</h4>
                         <div class="form-validation">
-                            <form class="form-valide" name="jenis-kandang" action="" method="post">
+                            <form class="form-valide" action="" method="post">
                                 <div class="form-group row">
                                     <label class="col-lg-2 col-form-label" for="val-nama-kandang">Nama<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="number" class="form-control" id="val-nama-kandang" name="val-nama-kandang" placeholder="Masukan nama kandang...">
+                                        <input type="text" class="form-control" id="val-nama-kandang" name="val-nama-kandang" placeholder="Masukan nama kandang..." value="<?=$result['nama_kandang']?>" >
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-2 col-form-label" for="val-jenis-kandang">Jenis<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-10">
-                                        <select class="form-control" id="val-jenis-kandang" name="val-jenis-kandang">
-                                            <option value="">Pilih Jenis Kandang</option>
-                                            <option value="html">HTML</option>
-                                            <option value="css">CSS</option>
-                                            <option value="javascript">JavaScript</option>
-                                            <option value="angular">Angular</option>
-                                            <option value="angular">React</option>
-                                            <option value="vuejs">Vue.js</option>
-                                            <option value="ruby">Ruby</option>
-                                            <option value="php">PHP</option>
-                                            <option value="asp">ASP.NET</option>
-                                            <option value="python">Python</option>
-                                            <option value="mysql">MySQL</option>
-                                        </select>
+                                    <select class="form-control" id="val-jenis-kandang" name="val-jenis-kandang">
+                                        <option value="">Pilih Jenis Kandang</option>
+                                        <?php
+                                        foreach ($jenis_kandang as $row) {
+                                        ?>
+                                            <option value="<?=$row['id_jenis_kandang']?>" <?=$result['id_jenis_kandang'] == $row['id_jenis_kandang'] ? 'selected="selected"' : '';?>><?=$row['luas']?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">

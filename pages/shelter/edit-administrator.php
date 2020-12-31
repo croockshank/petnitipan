@@ -1,5 +1,9 @@
 <?php
-    require_once '../../constants/constants.php';
+    require_once '../../core/init.php';
+
+    $id_administrator = get('id');
+    $exe = mysqli_query($conn,"SELECT * FROM administrator WHERE id_administrator ='$id_administrator'");
+    $result = mysqli_fetch_assoc($exe);
 ?>
 
 <?php
@@ -33,14 +37,14 @@
                                     <label class="col-lg-2 col-form-label" for="val-nama-administrator">Nama<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="text" class="form-control" id="val-nama-administrator" name="val-nama-administrator" placeholder="Masukan nama...">
+                                        <input type="text" class="form-control" id="val-nama-administrator" name="val-nama-administrator" placeholder="Masukan nama..." value="<?=$result['nama']?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-2 col-form-label" for="val-username">Username<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="text" class="form-control" id="val-username" name="val-username" placeholder="Masukan username...">
+                                        <input type="text" class="form-control" id="val-username" name="val-username" placeholder="Masukan username..." value="<?=$result['username']?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">

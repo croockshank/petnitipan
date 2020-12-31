@@ -1,5 +1,7 @@
 <?php
     require_once '../../../core/init.php';
+
+    $result = mysqli_query($conn, "SELECT k.id_kandang, k.nama_kandang, jk.luas FROM kandang k INNER JOIN jenis_kandang jk ON k.id_jenis_kandang = jk.id_jenis_kandang");
 ?>
 
 <?php
@@ -44,21 +46,27 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Tiger Nixon</td>
-                                        <td>2</td>
-                                        <td>
-                                        <div class="dropdown-button">
-                                        <div class="text-center" role="group">
-                                            <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button"><i class="fas fa-ellipsis-v"></i></a>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="pages/shelter/kandang/edit-kandang.php"><i class="far fa-edit"></i> Ubah</a>
-                                                <a class="dropdown-item" href="#"><i class="far fa-trash-alt"></i> Hapus</a>
+                                <?php
+                                    foreach($result as $row){
+                                ?>
+                                        <tr>
+                                            <td><?= $row['nama_kandang'] ?></td>
+                                            <td><?= $row['luas'] ?></td>
+                                            <td>
+                                            <div class="dropdown-button">
+                                            <div class="text-center" role="group">
+                                                <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button"><i class="fas fa-ellipsis-v"></i></a>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="pages/shelter/kandang/edit-kandang.php?id=<?=$row['id_kandang']?>"><i class="far fa-edit"></i> Ubah</a>
+                                                    <a class="dropdown-item" href="pages/shelter/kandang/kandang.php?id=<?=$row['id_kandang']?>"><i class="far fa-trash-alt"></i> Hapus</a>
+                                                </div>
                                             </div>
-                                        </div>
-                                        </div>
-                                        </td>
-                                    </tr>
+                                            </div>
+                                            </td>
+                                        </tr>
+                                <?php
+                                    }
+                                ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
@@ -82,4 +90,22 @@
 
 <?php
     include '../../../templates/footer.php';
+?>
+
+<?php
+    if(is_param_exist('id') && !is_param_exist('delete')){
+        $id_kandang = get('id');
+        swal('confirmation', 'Semua hewan yang tercatat dalam kandang ini akan ikut terhapus', 'pages/shelter/kandang/kandang.php?id=' . $id_kandang .'&delete');
+    }else if(is_param_exist('id') && is_param_exist('delete')){
+        $id_kandang = get('id');
+
+        $query = "DELETE FROM kandang WHERE id_kandang = $id_kandang";
+        $exe = mysqli_query($conn,$query);
+    
+        if ($exe) {
+            swal('success', 'Kandang berhasil dihapus!', 'pages/shelter/kandang/kandang.php');
+        } else {
+            swal('error', '', '');
+        }
+    }
 ?>

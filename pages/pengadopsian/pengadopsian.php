@@ -1,5 +1,8 @@
 <?php
     require_once '../../core/init.php';
+
+    $id_shelter = get('id-shelter');
+    $result = mysqli_query($conn, "SELECT ph.id_pengadopsi_mengadopsi_hewan, p.nama_pengadopsi, p.email, p.no_telepon, h.foto, h.nama_hewan, ph.tanggal, ph.biaya FROM pengadopsi_mengadopsi_hewan ph INNER JOIN pengadopsi p ON ph.id_pengadopsi = p.id_pengadopsi INNER JOIN hewan h ON ph.id_hewan = h.id_hewan WHERE h.id_shelter = '$id_shelter'");
 ?>
 
 <?php
@@ -48,13 +51,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <?php
+                                    foreach($result as $row){
+                                ?>                                       
                                     <tr>
-                                        <td> <img src="./images/avatar/1.jpg" class="rounded-circle mr-3" alt=""> Tiger Nixon</td>
-                                        <td>Paw</td>
-                                        <td>Cage A</td>
-                                        <td><img src="./images/avatar/1.jpg" class="rounded-circle mr-3" alt=""> Male</td>
-                                        <td>21 Desember 2020</td>
-                                        <td><span class="label gradient-4 rounded">Rp 300.000,00</span></td>
+                                        <td><?=$row['nama_pengadopsi']?></td>
+                                        <td><?=$row['email']?></td>
+                                        <td><?=$row['no_telepon']?></td>
+                                        <td><img src="<?=$row['foto']?>" class="rounded-circle mr-3" alt=""><?=$row['nama_hewan']?></td>
+                                        <td><?=format_date_only_pretier($row['tanggal'])?></td>
+                                        <td><span class="label gradient-4 rounded"><?=format_rupiah($row['biaya'])?></span></td>
                                         <td>
                                             <div class="text-center">
                                                 <a href="#"><i class="fas fa-print"></i></a>
@@ -62,6 +68,9 @@
                                             </div>
                                         </td>
                                     </tr>
+                                <?php
+                                    }
+                                ?>                                     
                                 </tbody>
                                 <tfoot>
                                     <tr>

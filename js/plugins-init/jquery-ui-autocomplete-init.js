@@ -7,16 +7,16 @@ $('#val-nama-hewan-autocomplete').autocomplete({
         $('#val-biaya-adopsi-disabled').val(ui.item.biaya_adopsi.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."))
         $('#val-biaya-adopsi').val(ui.item.biaya_adopsi)
 
-        $('#val-nama-makanan').removeAttr('disabled')
-        $('#val-nama-makanan').val('')
+        $('#val-nama-makanan-autocomplete').removeAttr('disabled')
+        $('#val-nama-makanan-autocomplete').val('')
 
-        $('#val-nama-vaksin').removeAttr('disabled')
-        $('#val-nama-vaksin').val('')
+        $('#val-nama-vaksin-autocomplete').removeAttr('disabled')
+        $('#val-nama-vaksin-autocomplete').val('')
     },
     change: function(event, ui){
         if(ui.item === null || !ui.item){
-            $('#val-nama-makanan').prop('disabled', true)
-            $('#val-nama-vaksin').prop('disabled', true)
+            $('#val-nama-makanan-autocomplete').prop('disabled', true)
+            $('#val-nama-vaksin-autocomplete').prop('disabled', true)
             $(this).val('');
         }
 
@@ -34,12 +34,12 @@ $('#val-nama-makanan-autocomplete').autocomplete({
         $('#val-id-makanan').val(ui.item.id)
         $('#val-label-jumlah-makanan').text(ui.item.jumlah)
 
-        $('#val-jumlah-makanan').removeAttr('disabled')
-        $('#val-jumlah-makanan').val('')
+        $('#val-jumlah-makanan-validated').removeAttr('disabled')
+        $('#val-jumlah-makanan-validated').val('')
     },
     change: function(event, ui){
         if(ui.item === null || !ui.item){
-            $('#val-jumlah-makanan').prop('disabled', true)
+            $('#val-jumlah-makanan-validated').prop('disabled', true)
             $(this).val('');
         }
     }
@@ -56,12 +56,12 @@ $('#val-nama-vaksin-autocomplete').autocomplete({
         $('#val-id-vaksin').val(ui.item.id)
         $('#val-label-jumlah-vaksin').text(ui.item.jumlah)
 
-        $('#val-jumlah-vaksin').removeAttr('disabled')
-        $('#val-jumlah-vaksin').val('')
+        $('#val-jumlah-vaksin-validated').removeAttr('disabled')
+        $('#val-jumlah-vaksin-validated').val('')
     },
     change: function(event, ui){
         if(ui.item === null || !ui.item){
-            $('#val-jumlah-vaksin').prop('disabled', true)
+            $('#val-jumlah-vaksin-validated').prop('disabled', true)
             $(this).val('');
         }
     }

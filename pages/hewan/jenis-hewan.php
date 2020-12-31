@@ -1,5 +1,7 @@
 <?php
     require_once '../../core/init.php';
+
+    $result = mysqli_query($conn,"SELECT * FROM jenis_hewan");
 ?>
 
 <?php
@@ -43,20 +45,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <?php
+                                    foreach($result as $row){
+                                ?>
                                     <tr>
-                                        <td><i class="rounded-circle mr-3 fas fa-paw" alt=""></i>Tiger Nixon</td>
+                                        <td><i class="rounded-circle mr-3 <?=$row['icon']?>" alt=""></i><?=$row['nama_jenis_hewan']?></td>
                                         <td>
                                             <div class="dropdown-button">
                                                 <div class="text-center" role="group">
                                                     <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button"><i class="fas fa-ellipsis-v"></i></a>
                                                     <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="pages/hewan/edit-jenis-hewan.php"><i class="far fa-edit"></i> Ubah</a>
-                                                        <a class="dropdown-item" href="#"><i class="far fa-trash-alt"></i> Hapus</a>
+                                                        <a class="dropdown-item" href="pages/hewan/edit-jenis-hewan.php?id=<?=$row['id_jenis_hewan']?>"><i class="far fa-edit"></i> Ubah</a>
+                                                        <a class="dropdown-item" href="pages/hewan/jenis-hewan.php?id=<?=$row['id_jenis_hewan']?>"><i class="far fa-trash-alt"></i> Hapus</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
+                                <?php
+                                    }
+                                ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
@@ -78,5 +86,23 @@
     ***********************************-->
 
 <?php
-include '../../templates/footer.php';
+    include '../../templates/footer.php';
+?>
+
+<?php
+    if(is_param_exist('id') && !is_param_exist('delete')){
+        $id_jenis_hewan = get('id');
+        swal('confirmation', 'Hewan dan kebutuhan yang terdaftar akan ikut terhapus', 'pages/hewan/jenis-hewan.php?id=' . $id_jenis_hewan .'&delete');
+    }else if(is_param_exist('id') && is_param_exist('delete')){
+        $id_jenis_hewan = get('id');
+
+        $query = "DELETE FROM jenis_hewan WHERE id_jenis_hewan = $id_jenis_hewan";
+        $exe = mysqli_query($conn,$query);
+    
+        if ($exe) {
+            swal('success', 'Jenis Hewan berhasil dihapus!', 'pages/hewan/jenis-hewan.php');
+        } else {
+            swal('error', '', '');
+        }
+    }
 ?>

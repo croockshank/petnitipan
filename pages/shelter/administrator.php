@@ -1,5 +1,8 @@
 <?php
     require_once '../../core/init.php';
+
+    $id_shelter = get('id-shelter');
+    $result = mysqli_query($conn,"SELECT * FROM administrator WHERE id_shelter = '$id_shelter'");
 ?>
 
 <?php
@@ -44,21 +47,27 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <?php
+                                    foreach($result as $row){
+                                ?>
                                     <tr>
-                                        <td>Tiger Nixon</td>
-                                        <td>2</td>
+                                        <td><?=$row['nama']?></td>
+                                        <td><?=$row['username']?></td>
                                         <td>
                                         <div class="dropdown-button">
                                         <div class="text-center" role="group">
                                             <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button"><i class="fas fa-ellipsis-v"></i></a>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="pages/shelter/edit-administrator.php"><i class="far fa-edit"></i> Edit</a>
-                                                <a class="dropdown-item" href="#"><i class="far fa-trash-alt"></i> Hapus</a>
+                                                <a class="dropdown-item" href="pages/shelter/edit-administrator.php?id=<?=$row['id_administrator']?>"><i class="far fa-edit"></i> Edit</a>
+                                                <a class="dropdown-item" href="pages/shelter/administrator.php?id=<?=$row['id_administrator']?>"><i class="far fa-trash-alt"></i> Hapus</a>
                                             </div>
                                         </div>
                                         </div>
                                         </td>
                                     </tr>
+                                <?php
+                                    }
+                                ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
@@ -82,4 +91,22 @@
 
 <?php
     include '../../templates/footer.php';
+?>
+
+<?php
+    if(is_param_exist('id') && !is_param_exist('delete')){
+        $id_administrator = get('id');
+        swal('confirmation', 'Administrator ini akan terhapus', 'pages/shelter/administrator.php?id=' . $id_administrator .'&delete');
+    }else if(is_param_exist('id') && is_param_exist('delete')){
+        $id_administrator = get('id');
+
+        $query = "DELETE FROM administrator WHERE id_administrator = $id_administrator";
+        $exe = mysqli_query($conn,$query);
+    
+        if ($exe) {
+            swal('success', 'Administrator berhasil dihapus!', 'pages/shelter/administrator.php');
+        } else {
+            swal('error', '', '');
+        }
+    }
 ?>
