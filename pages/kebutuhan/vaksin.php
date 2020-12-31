@@ -2,7 +2,7 @@
     require_once '../../core/init.php';
 
     $id_shelter = get('id-shelter');
-    $result = mysqli_query($conn, "SELECT v.id_vaksin, v.nama_vaksin, (COALESCE(SUM(hv.jumlah), 0) + v.jumlah) AS total_jumlah, v.jumlah AS jumlah_tersisa, (100 - (((COALESCE(SUM(hv.jumlah), 0)+ v.jumlah) - v.jumlah) / v.jumlah) * 100) AS presentase, v.harga_satuan, jh.icon, jh.nama_jenis_hewan FROM vaksin v LEFT OUTER JOIN hewan_mendapatkan_vaksin hv ON v.id_vaksin = hv.id_vaksin INNER JOIN jenis_hewan jh ON v.id_jenis_hewan = jh.id_jenis_hewan WHERE v.id_shelter = '$id_shelter' GROUP BY hv.id_hewan");
+    $result = mysqli_query($conn, "SELECT v.id_vaksin, v.nama_vaksin, (COALESCE(SUM(hv.jumlah), 0) + v.jumlah) AS total_jumlah, v.jumlah AS jumlah_tersisa, (100 - (((COALESCE(SUM(hv.jumlah), 0)+ v.jumlah) - v.jumlah) / v.jumlah) * 100) AS presentase, v.harga_satuan, jh.icon, jh.nama_jenis_hewan FROM vaksin v LEFT OUTER JOIN hewan_mendapatkan_vaksin hv ON v.id_vaksin = hv.id_vaksin INNER JOIN jenis_hewan jh ON v.id_jenis_hewan = jh.id_jenis_hewan WHERE v.id_shelter = '$id_shelter' GROUP BY v.id_vaksin");
 ?>
 
 <?php
