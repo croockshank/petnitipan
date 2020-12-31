@@ -81,7 +81,7 @@
                                 <div class="form-group row">
                                     <div class="col-lg-2"></div>
                                     <div class="col-lg-10">
-                                        <button type="submit" class="btn btn-secondary">Ubah</button>
+                                        <button type="submit" class="btn btn-secondary" name="ubah">Ubah</button>
                                     </div>
                                 </div>
                             </form>
@@ -99,4 +99,23 @@
     ***********************************-->
 <?php
     include '../../templates/footer.php';
+?>
+
+<?php
+    if(is_clicked('ubah')){
+        $nama_vaksin = get('val-nama-vaksin');
+        $harga_satuan = replace_price_separator(get('val-biaya-vaksin'));
+        $jumlah = get('val-jumlah-vaksin');
+        $id_jenis_hewan = get('val-jenis-hewan');
+        $id_shelter = get('id-shelter');
+      
+        $query = "UPDATE vaksin SET nama_vaksin = '$nama_vaksin', jumlah = $jumlah , harga_satuan = $harga_satuan , id_jenis_hewan = $id_jenis_hewan WHERE id_vaksin = $id_vaksin";
+       $exe = mysqli_query($conn,$query);
+   
+       if ($exe) {
+           swal('success', 'Vaksin berhasil diubah!', 'pages/kebutuhan/vaksin.php');
+       } else {
+           swal('error', '', '');
+       }
+    }
 ?>

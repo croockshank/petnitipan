@@ -66,7 +66,7 @@
                                                 foreach($result_belum_teradopsi as $row){
                                             ?>
                                                     <tr>
-                                                        <td> <img src="<?=$row['foto']?>" class="rounded-circle mr-3" alt=""><?=$row['nama_hewan']?></td>
+                                                        <td> <img src="<?=$row['foto']?>" class="rounded-circle img-icon mr-3" alt=""><?=$row['nama_hewan']?></td>
                                                         <td><i class="<?=$row['icon']?> mr-3"></i><?=$row['nama_jenis_hewan']?></td>
                                                         <td><?=$row['nama_kandang']?></td>
                                                         <td><?=$row['jenis_kelamin']?></td>
@@ -123,7 +123,7 @@
                                                 foreach($result_teradopsi as $row){
                                             ?>
                                                     <tr>
-                                                        <td> <img src="<?=$row['foto']?>" class="rounded-circle mr-3" alt=""><?=$row['nama_hewan']?></td>
+                                                        <td> <img src="<?=$row['foto']?>" class="rounded-circle img-icon mr-3" alt=""><?=$row['nama_hewan']?></td>
                                                         <td><i class="<?=$row['icon']?> mr-3"></i><?=$row['nama_jenis_hewan']?></td>
                                                         <td><?=$row['nama_kandang']?></td>
                                                         <td><?=$row['jenis_kelamin']?></td>

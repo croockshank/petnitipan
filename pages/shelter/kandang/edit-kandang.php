@@ -62,7 +62,7 @@
                                 <div class="form-group row">
                                     <div class="col-lg-2"></div>
                                     <div class="col-lg-10">
-                                        <button type="submit" class="btn btn-secondary">Ubah</button>
+                                        <button type="submit" class="btn btn-secondary" name="ubah">Ubah</button>
                                     </div>
                                 </div>
                             </form>
@@ -80,4 +80,21 @@
     ***********************************-->
 <?php
     include '../../../templates/footer.php';
+?>
+
+<?php
+    if(is_clicked('ubah')){
+        $nama_kandang = get('val-nama-kandang');
+        $id_jenis_kandang = get('val-jenis-kandang');
+        
+        
+        $query = "UPDATE kandang SET nama_kandang = '$nama_kandang', id_jenis_kandang = '$id_jenis_kandang'  WHERE id_kandang= $id_kandang";
+        $exe = mysqli_query($conn,$query);
+        
+        if ($exe) {
+            swal('success', 'Kandang berhasil diubah!', 'pages/shelter/kandang/kandang.php');
+        } else {
+            swal('error', '', '');
+        }
+    }
 ?>

@@ -86,7 +86,7 @@ include '../../templates/header.php';
         Content body end
     ***********************************-->
 <?php
-include '../../templates/footer.php';
+    include '../../templates/footer.php';
 ?>
 
 <?php

@@ -38,8 +38,8 @@
                                     </label>
                                     <div class="col-lg-10">
                                         <input type="text" class="form-control" id="val-nama-hewan-autocomplete" name="val-nama-hewan" placeholder="Masukan nama hewan..." value="<?=$result['nama_hewan']?>">
-                                        <input type="hidden" class="form-control" id="val-id-hewan-autocomplete" name="val-id-hewan-autocomplete" value="<?=$result['id_hewan']?>">
-                                        <input type="hidden" class="form-control" id="val-id-jenis-hewan-autocomplete" name="val-id-jenis-hewan-autocomplete" value="<?=$result['id_jenis_hewan']?>">
+                                        <input type="hidden" class="form-control" id="val-id-hewan-autocomplete" name="val-id-hewan" value="<?=$result['id_hewan']?>">
+                                        <input type="hidden" class="form-control" id="val-id-jenis-hewan-autocomplete" name="val-id-jenis-hewan" value="<?=$result['id_jenis_hewan']?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -90,5 +90,23 @@
         Content body end
     ***********************************-->
 <?php
-include '../../templates/footer.php';
+    include '../../templates/footer.php';
+?>
+
+<?php
+    if(is_clicked('ubah')){
+        $id_hewan = get('val-id-hewan');
+        $id_vaksin = get('val-id-vaksin');
+        $jumlah = get('val-jumlah-vaksin-validated');
+        $waktu = format_date(get('val-waktu'));
+     
+        $query = "UPDATE hewan_mendapatkan_vaksin SET id_hewan = '$id_hewan' , id_vaksin = '$id_vaksin' , jumlah = '$jumlah', waktu = '$waktu' WHERE id_hewan_mendapatkan_vaksin = $id_vaksinasi";
+        $exe = mysqli_query($conn,$query);
+    
+        if ($exe) {
+            swal('success', 'Vaksinasi berhasil diubah!', 'pages/perawatan/vaksinasi.php');
+        } else {
+            swal('error', '', '');
+        }
+    }
 ?>

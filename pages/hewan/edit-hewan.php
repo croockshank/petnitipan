@@ -2,7 +2,7 @@
     require_once '../../core/init.php';
 
     $id_hewan = get('id');
-    $exe = mysqli_query($conn,"SELECT h.id_hewan, h.nama_hewan, jh.id_jenis_hewan, k.id_kandang, h.jenis_kelamin, h.panjang, h.berat FROM hewan h INNER JOIN jenis_hewan jh ON jh.id_jenis_hewan = h.id_jenis_hewan INNER JOIN kandang k ON k.id_kandang = h.id_kandang WHERE h.id_hewan = '$id_hewan'");
+    $exe = mysqli_query($conn,"SELECT h.id_hewan, h.nama_hewan, jh.id_jenis_hewan, k.id_kandang, h.jenis_kelamin, h.panjang, h.berat, h.tanggal_masuk FROM hewan h INNER JOIN jenis_hewan jh ON jh.id_jenis_hewan = h.id_jenis_hewan INNER JOIN kandang k ON k.id_kandang = h.id_kandang WHERE h.id_hewan = '$id_hewan'");
     $result = mysqli_fetch_assoc($exe);
 
     $query_jenis_hewan = "SELECT * FROM jenis_hewan ORDER BY nama_jenis_hewan";
@@ -100,16 +100,25 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <label class="col-lg-2 col-form-label" for="val-tanggal">Tanggal<span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-10">
+                                        <div class="input-group">
+                                            <input type="text" id="date-only" class="form-control" placeholder="Masukkan tanggal..." name="val-waktu" value="<?=format_date_only_pretier($result['tanggal_masuk'])?>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <label class="col-lg-2 col-form-label" for="val-gambar-hewan">Gambar
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="file" id="val-gambar-hewan" name="val-gambar-hewan" placeholder="Masukan gambar hewan...">
+                                        <input type="file" id="val-gambar-hewan" name="val-gambar-hewan" placeholder="Masukan gambar hewan..." accept="image/*">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-lg-2"></div>
                                     <div class="col-lg-10">
-                                        <button type="submit" class="btn btn-secondary">Ubah</button>
+                                        <button type="submit" class="btn btn-secondary" name="ubah">Ubah</button>
                                     </div>
                                 </div>
                             </form>
@@ -127,4 +136,53 @@
     ***********************************-->
 <?php
     include '../../templates/footer.php';
+?>
+
+<?php
+    require_once '../../lib/bulletproof/bulletproof.php';
+
+    if(is_clicked('ubah')){
+        $image = new Bulletproof\Image($_FILES);
+        $image->setLocation('../../uploads/images');
+
+        $id_shelter = get('id-shelter');
+        $nama_hewan = get('val-nama-hewan');
+        $id_jenis_hewan = get('val-jenis-hewan');
+        $id_kandang = get('val-kandang');
+        $jenis_kelamin = get('jenis-kelamin') == 'Laki-laki' ? 'Laki Laki' : 'Perempuan';
+        $panjang = get('val-panjang-hewan');
+        $berat = get('val-berat-hewan');
+        $tanggal_masuk = format_date_only(get('val-waktu'));
+
+        if($_FILES['val-gambar-hewan']['size'] > 0){
+            if($image['val-gambar-hewan']){
+                if($image->upload()){
+                    $foto = url() . 'uploads/images/' . $image->getName() . '.' . $image->getMime();
+    
+                    $query = "UPDATE hewan SET nama_hewan = '$nama_hewan', jenis_kelamin = '$jenis_kelamin', panjang = '$panjang', berat = $berat, id_jenis_hewan = '$id_jenis_hewan', tanggal_masuk = '$tanggal_masuk', id_kandang = '$id_kandang', foto = '$foto' WHERE id_hewan = '$id_hewan'";
+                    $exe = mysqli_query($conn,$query);
+                    
+                    if ($exe) {
+                        swal('success', 'Hewan berhasil diubah!', 'pages/hewan/hewan.php');
+                    } else {
+                        swal('error', '', '');
+                    }
+                }else{
+                    die($image->getError());
+                    swal('error', '', '');
+                }
+            }else{
+                swal('error', '', '');
+            }
+        }else{
+            $query = "UPDATE hewan SET nama_hewan = '$nama_hewan', jenis_kelamin = '$jenis_kelamin', panjang = '$panjang', berat = '$berat', id_jenis_hewan = '$id_jenis_hewan', tanggal_masuk = '$tanggal_masuk', id_kandang = '$id_kandang' WHERE id_hewan = '$id_hewan'";
+            $exe = mysqli_query($conn,$query);
+            
+            if ($exe) {
+                swal('success', 'Hewan berhasil diubah!', 'pages/hewan/hewan.php');
+            } else {
+                swal('error', '', '');
+            }
+        }
+    }
 ?>

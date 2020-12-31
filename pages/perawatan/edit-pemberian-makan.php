@@ -90,5 +90,23 @@
         Content body end
     ***********************************-->
 <?php
-include '../../templates/footer.php';
+    include '../../templates/footer.php';
+?>
+
+<?php
+    if(is_clicked('ubah')){
+        $id_hewan = get('val-id-hewan');
+        $id_makanan = get('val-id-makanan');
+        $jumlah = get('val-jumlah-makanan-validated');
+        $waktu = format_date(get('val-waktu'));
+    
+        $query = "UPDATE hewan_mendapatkan_makanan SET id_hewan = '$id_hewan' , id_makanan = '$id_makanan' , jumlah = '$jumlah', waktu = '$waktu' WHERE id_hewan_mendapatkan_makanan = $id_pemberian_makan";
+        $exe = mysqli_query($conn,$query);
+    
+        if ($exe) {
+            swal('success', 'Makanan berhasil diubah!', 'pages/perawatan/pemberian-makan.php');
+        } else {
+            swal('error', '', '');
+        }
+    }
 ?>

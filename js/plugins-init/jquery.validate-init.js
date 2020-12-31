@@ -90,11 +90,13 @@ jQuery(".form-valide").validate({
     "val-panjang-hewan": {
       required: true,
       digits: !0,
+      decimal: true,
       min: 1,
     },
     "val-berat-hewan": {
       required: true,
       digits: !0,
+      decimal: true,
       min: 1,
     },
     "val-gambar-hewan-required": {

@@ -7,4 +7,11 @@
         lang: 'id'
     });
 
+    $('#date-only').bootstrapMaterialDatePicker({
+        time: false,
+        format: 'ddd, DD MMM YYYY',
+        nowButton: true,
+        lang: 'id'
+    });
+
 })(jQuery);

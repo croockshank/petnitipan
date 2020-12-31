@@ -43,7 +43,7 @@
                                 <div class="form-group row">
                                     <div class="col-lg-2"></div>
                                     <div class="col-lg-10">
-                                        <button type="submit" class="btn btn-primary">Ubah</button>
+                                        <button type="submit" class="btn btn-primary" name="ubah">Ubah</button>
                                     </div>
                                 </div>
                             </form>
@@ -61,4 +61,19 @@
     ***********************************-->
 <?php
     include '../../templates/footer.php';
+?>
+
+<?php
+    if(is_clicked('ubah')){
+        $nama_jenis_hewan = get('val-nama-jenis-hewan');
+    
+        $query = "UPDATE jenis_hewan SET nama_jenis_hewan = '$nama_jenis_hewan' WHERE id_jenis_hewan = $id_jenis_hewan";
+        $exe = mysqli_query($conn,$query);
+        
+        if ($exe) {
+            swal('success', 'Jenis hewan berhasil diubah!', 'pages/hewan/jenis-hewan.php');
+        } else {
+            swal('error', '', '');
+        }
+    }
 ?>

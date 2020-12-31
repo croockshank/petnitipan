@@ -26,7 +26,7 @@
                         </a>
                     </li>
                     <li class="nav-label">Hewan</li>
-                    <li>
+                    <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="fas fa-paw menu-icon"></i><span class="nav-text">Hewan</span>
                         </a>
@@ -35,7 +35,8 @@
                             <li><a href="./pages/hewan/hewan.php">Hewan</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="nav-label">Kebutuhan</li>
+                    <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="fas fa-bone menu-icon"></i><span class="nav-text">Kebutuhan</span>
                         </a>
@@ -45,7 +46,7 @@
                         </ul>
                     </li>
                     <li class="nav-label">Perawatan</li>
-                    <li>
+                    <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="fas fa-mortar-pestle menu-icon"></i><span class="nav-text">Perawatan</span>
                         </a>

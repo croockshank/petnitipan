@@ -54,7 +54,7 @@
                                     foreach($result as $row){
                                 ?>                                    
                                     <tr>
-                                        <td> <img src="<?=$row['foto']?>" class="rounded-circle mr-3" alt=""> <?=$row['nama_vaksin']?> </td>
+                                        <td> <img src="<?=$row['foto']?>" class="rounded-circle img-icon mr-3" alt=""> <?=$row['nama_vaksin']?> </td>
                                         <td><i class="<?=$row['icon']?> mr-1"></i><?=$row['nama_jenis_hewan']?></td>
                                         <td><?=$row['nama_kandang']?></td>
                                         <td><?=$row['jenis_kelamin']?></td>

@@ -96,16 +96,25 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <label class="col-lg-2 col-form-label" for="val-tanggal">Tanggal<span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-10">
+                                        <div class="input-group">
+                                            <input type="text" id="date-only" class="form-control" placeholder="Masukkan tanggal..." name="val-waktu">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <label class="col-lg-2 col-form-label" for="val-gambar-hewan-required">Gambar<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="file" id="val-gambar-hewan-required" name="val-gambar-hewan-required" placeholder="Masukan gambar hewan...">
+                                        <input type="file" id="val-gambar-hewan-required" name="val-gambar-hewan-required" placeholder="Masukan gambar hewan..." accept="image/*">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-lg-2"></div>
                                     <div class="col-lg-10">
-                                        <button type="submit" class="btn btn-secondary">Tambah</button>
+                                        <button type="submit" class="btn btn-secondary" name="tambah">Tambah</button>
                                     </div>
                                 </div>
                             </form>
@@ -126,5 +135,40 @@
 ?>
 
 <?php
+    require_once '../../lib/bulletproof/bulletproof.php';
+
+    if(is_clicked('tambah')){
+        $image = new Bulletproof\Image($_FILES);
+
+        $id_shelter = get('id-shelter');
+        $nama_hewan = get('val-nama-hewan');
+        $id_jenis_hewan = get('val-jenis-hewan');
+        $id_kandang = get('val-kandang');
+        $jenis_kelamin = get('jenis-kelamin') == 'Laki-laki' ? 'Laki Laki' : 'Perempuan';
+        $panjang = get('val-panjang-hewan');
+        $berat = get('val-berat-hewan');
+        $tanggal_masuk = format_date_only(get('val-waktu'));
+        $image->setLocation('../../uploads/images');
     
+        if($image['val-gambar-hewan-required']){
+            if($image->upload()){
+                $foto = url() . 'uploads/images/' . $image->getName() . '.' . $image->getMime();
+
+                $query = "INSERT INTO hewan(nama_hewan, jenis_kelamin, panjang, berat, id_jenis_hewan, tanggal_masuk , status , foto , id_kandang , id_shelter ) values ('$nama_hewan','$jenis_kelamin','$panjang','$berat','$id_jenis_hewan','$tanggal_masuk', 1 ,'$foto','$id_kandang','$id_shelter')";
+                $exe = mysqli_query($conn,$query);
+                
+                if ($exe) {
+                    swal('success', 'Hewan berhasil ditambahkan!', 'pages/hewan/hewan.php');
+                } else {
+                    swal('error', '', '');
+                }
+            }else{
+                die($image->getError());
+                swal('error', '', '');
+            }
+        }else{
+            swal('error', '', '');
+        }
+    }
+
 ?>
