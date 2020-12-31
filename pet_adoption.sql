@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 29 Des 2020 pada 03.05
--- Versi server: 10.4.17-MariaDB
--- Versi PHP: 7.3.25
+-- Host: localhost
+-- Generation Time: Dec 31, 2020 at 11:09 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `pet_adoption`
+-- Database: `db_petnitipan`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `administrator`
+-- Table structure for table `administrator`
 --
 
 CREATE TABLE `administrator` (
@@ -36,7 +37,7 @@ CREATE TABLE `administrator` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `administrator`
+-- Dumping data for table `administrator`
 --
 
 INSERT INTO `administrator` (`id_administrator`, `nama`, `username`, `password`, `id_shelter`) VALUES
@@ -54,7 +55,7 @@ INSERT INTO `administrator` (`id_administrator`, `nama`, `username`, `password`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `hewan`
+-- Table structure for table `hewan`
 --
 
 CREATE TABLE `hewan` (
@@ -72,44 +73,45 @@ CREATE TABLE `hewan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `hewan`
+-- Dumping data for table `hewan`
 --
 
 INSERT INTO `hewan` (`id_hewan`, `nama_hewan`, `jenis_kelamin`, `panjang`, `berat`, `id_jenis_hewan`, `tanggal_masuk`, `status`, `foto`, `id_kandang`, `id_shelter`) VALUES
 (1, 'Shintaro', 'Laki Laki', 40, 3.6, 1, '2020-12-24', 1, '', 3, 10),
-(2, 'Tobama', 'Perempuan', 25, 6, 7, '2020-12-24', 1, '', 6, 3),
+(2, 'Tobama', 'Perempuan', 25, 6, 7, '2020-12-24', 1, '', NULL, 3),
 (3, 'Koko', 'Laki Laki', 90, 8.7, 2, '2020-12-25', 1, '', 4, 7),
 (4, 'Katty', 'Perempuan', 70, 10.3, 1, '2020-12-25', 2, '', 5, 9),
 (5, 'Rata', 'Laki Laki', 20, 4.5, 4, '2020-12-23', 1, '', 1, 2),
 (6, 'Kirito', 'Laki Laki', 60, 9.5, 2, '2020-12-16', 1, '', 4, 1),
 (7, 'Nekoma', 'Perempuan', 40, 6.9, 1, '2020-12-26', 1, '', 3, 9),
 (8, 'Bull Frek', 'Laki Laki', 12, 15.6, 2, '2020-12-20', 1, '', 8, 6),
-(9, 'Tabi Tabi', 'Perempuan', 40, 8.6, 2, '2020-12-21', 1, '', 4, 10),
 (10, 'Ashuna', 'Perempuan', 30, 5.9, 1, '2020-12-23', 1, '', 3, 5);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `hewan_mendapatkan_makanan`
+-- Table structure for table `hewan_mendapatkan_makanan`
 --
 
 CREATE TABLE `hewan_mendapatkan_makanan` (
   `id_hewan_mendapatkan_makanan` int(20) NOT NULL,
-  `id_hewan` int(20) NOT NULL,
-  `id_makanan` int(20) NOT NULL,
+  `id_hewan` int(20) DEFAULT NULL,
+  `id_makanan` int(20) DEFAULT NULL,
   `jumlah` int(100) NOT NULL COMMENT '/gram',
-  `waktu` date NOT NULL
+  `waktu` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `hewan_mendapatkan_makanan`
+-- Dumping data for table `hewan_mendapatkan_makanan`
 --
 
 INSERT INTO `hewan_mendapatkan_makanan` (`id_hewan_mendapatkan_makanan`, `id_hewan`, `id_makanan`, `jumlah`, `waktu`) VALUES
-(4, 4, 1, 1000, '2020-12-27');
+(4, 4, 1, 1000, '2020-12-27 00:00:00'),
+(5, 5, 8, 30, '2020-12-30 14:37:26'),
+(7, 5, 8, 12, '2020-12-31 12:29:00');
 
 --
--- Trigger `hewan_mendapatkan_makanan`
+-- Triggers `hewan_mendapatkan_makanan`
 --
 DELIMITER $$
 CREATE TRIGGER `hewan_dapat_makanan` AFTER INSERT ON `hewan_mendapatkan_makanan` FOR EACH ROW UPDATE makanan SET jumlah = jumlah-NEW.jumlah
@@ -120,26 +122,28 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `hewan_mendapatkan_vaksin`
+-- Table structure for table `hewan_mendapatkan_vaksin`
 --
 
 CREATE TABLE `hewan_mendapatkan_vaksin` (
   `id_hewan_mendapatkan_vaksin` int(20) NOT NULL,
-  `id_hewan` int(20) NOT NULL,
-  `id_vaksin` int(20) NOT NULL,
+  `id_hewan` int(20) DEFAULT NULL,
+  `id_vaksin` int(20) DEFAULT NULL,
   `jumlah` int(100) NOT NULL,
-  `waktu` date NOT NULL
+  `waktu` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `hewan_mendapatkan_vaksin`
+-- Dumping data for table `hewan_mendapatkan_vaksin`
 --
 
 INSERT INTO `hewan_mendapatkan_vaksin` (`id_hewan_mendapatkan_vaksin`, `id_hewan`, `id_vaksin`, `jumlah`, `waktu`) VALUES
-(2, 3, 1, 5, '2020-12-23');
+(2, 3, 1, 5, '2020-12-23 00:00:00'),
+(5, 5, 8, 1, '2020-12-30 14:38:12'),
+(7, 5, 8, 2, '2020-12-31 12:29:00');
 
 --
--- Trigger `hewan_mendapatkan_vaksin`
+-- Triggers `hewan_mendapatkan_vaksin`
 --
 DELIMITER $$
 CREATE TRIGGER `hewan_dapat_vaksin` AFTER INSERT ON `hewan_mendapatkan_vaksin` FOR EACH ROW UPDATE vaksin SET jumlah = jumlah - NEW.jumlah WHERE id_vaksin = NEW.id_vaksin
@@ -149,7 +153,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jenis_hewan`
+-- Table structure for table `jenis_hewan`
 --
 
 CREATE TABLE `jenis_hewan` (
@@ -159,22 +163,21 @@ CREATE TABLE `jenis_hewan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `jenis_hewan`
+-- Dumping data for table `jenis_hewan`
 --
 
 INSERT INTO `jenis_hewan` (`id_jenis_hewan`, `nama_jenis_hewan`, `icon`) VALUES
 (1, 'Kucing', 'fas fa-cat'),
 (2, 'Anjing', 'fas fa-dog'),
-(3, 'Tupai', 'fas fas-squirrel'),
-(4, 'Kelinci', 'fas fa-rabbit'),
-(5, 'Monyet', 'fas fa-monkey'),
+(4, 'Kelinci', 'fas fa-paw'),
+(5, 'Monyet', 'fas fa-paw'),
 (6, 'Burung', 'fas fa-crow'),
-(7, 'Kura Kura', 'fas fa-turtle');
+(7, 'Kura Kura', 'fas fa-paw');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jenis_kandang`
+-- Table structure for table `jenis_kandang`
 --
 
 CREATE TABLE `jenis_kandang` (
@@ -183,25 +186,20 @@ CREATE TABLE `jenis_kandang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `jenis_kandang`
+-- Dumping data for table `jenis_kandang`
 --
 
 INSERT INTO `jenis_kandang` (`id_jenis_kandang`, `luas`) VALUES
-(1, 15),
-(2, 20),
 (3, 30),
 (4, 35),
 (5, 40),
 (6, 45),
-(7, 50),
-(8, 60),
-(9, 70),
-(10, 80);
+(7, 50);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kandang`
+-- Table structure for table `kandang`
 --
 
 CREATE TABLE `kandang` (
@@ -212,7 +210,7 @@ CREATE TABLE `kandang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `kandang`
+-- Dumping data for table `kandang`
 --
 
 INSERT INTO `kandang` (`id_kandang`, `nama_kandang`, `id_shelter`, `id_jenis_kandang`) VALUES
@@ -221,16 +219,14 @@ INSERT INTO `kandang` (`id_kandang`, `nama_kandang`, `id_shelter`, `id_jenis_kan
 (3, 'Kandang Kucing medium', 2, 4),
 (4, 'Kandang Anjing Medium', 4, 3),
 (5, 'Kandang Kucing Besar', 10, 5),
-(6, 'Kandang Ular Kecil', 3, 3),
 (7, 'Kandang Ular Besar', 3, 5),
 (8, 'Kandang Anjing Besar', 10, 6),
-(9, 'Kandang Anjing Super Besar', 4, 7),
-(10, 'Kandang Ular', 7, 2);
+(9, 'Kandang Anjing Super Besar', 4, 7);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `makanan`
+-- Table structure for table `makanan`
 --
 
 CREATE TABLE `makanan` (
@@ -238,12 +234,12 @@ CREATE TABLE `makanan` (
   `nama_makanan` varchar(200) NOT NULL,
   `jumlah` int(100) NOT NULL COMMENT '/gram',
   `harga_satuan` int(100) NOT NULL COMMENT '/gram',
-  `id_jenis_hewan` int(20) NOT NULL,
+  `id_jenis_hewan` int(20) DEFAULT NULL,
   `id_shelter` int(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `makanan`
+-- Dumping data for table `makanan`
 --
 
 INSERT INTO `makanan` (`id_makanan`, `nama_makanan`, `jumlah`, `harga_satuan`, `id_jenis_hewan`, `id_shelter`) VALUES
@@ -254,14 +250,14 @@ INSERT INTO `makanan` (`id_makanan`, `nama_makanan`, `jumlah`, `harga_satuan`, `
 (5, 'Milet Campur', 9000, 370, 6, 4),
 (6, 'Mazuri Tortoise', 12000, 250, 7, 2),
 (7, 'Daisu Tusukan Bento Food', 15000, 350, 5, 3),
-(8, 'Rabbit Alfafa', 16000, 254, 4, 6),
-(9, 'Pur 551', 17000, 210, 3, 7),
-(10, 'SUN', 25000, 430, 3, 9);
+(8, 'Rabbit Alfafa', 15928, 254, 4, 2),
+(9, 'Pur 551', 17000, 210, NULL, 7),
+(10, 'SUN', 25000, 430, NULL, 9);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengadopsi`
+-- Table structure for table `pengadopsi`
 --
 
 CREATE TABLE `pengadopsi` (
@@ -273,35 +269,39 @@ CREATE TABLE `pengadopsi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `pengadopsi`
+-- Dumping data for table `pengadopsi`
 --
 
 INSERT INTO `pengadopsi` (`id_pengadopsi`, `nama_pengadopsi`, `alamat`, `no_telepon`, `email`) VALUES
 (1, 'Reynaldi Ramadhani', 'jl Wonorejo Kabupaten Lumajang', '081234567890', 'reynal12@gmail.com'),
-(2, 'Dama Dame', 'jl kahuripan Kota Kediri', '087678534276', 'DamaDam@gmail.com');
+(2, 'Dama Dame', 'jl kahuripan Kota Kediri', '087678534276', 'DamaDam@gmail.com'),
+(7, 'Genadi Dharma', 'Jalan Ahmad Yani', '085238831025', 'genadi.alba@gmail.com');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengadopsi_mengadopsi_hewan`
+-- Table structure for table `pengadopsi_mengadopsi_hewan`
 --
 
 CREATE TABLE `pengadopsi_mengadopsi_hewan` (
   `id_pengadopsi_mengadopsi_hewan` int(20) NOT NULL,
-  `id_pengadopsi` int(20) NOT NULL,
-  `id_hewan` int(20) NOT NULL,
-  `biaya` int(100) NOT NULL
+  `id_pengadopsi` int(20) DEFAULT NULL,
+  `id_hewan` int(20) DEFAULT NULL,
+  `biaya` int(100) NOT NULL,
+  `tanggal` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `pengadopsi_mengadopsi_hewan`
+-- Dumping data for table `pengadopsi_mengadopsi_hewan`
 --
 
-INSERT INTO `pengadopsi_mengadopsi_hewan` (`id_pengadopsi_mengadopsi_hewan`, `id_pengadopsi`, `id_hewan`, `biaya`) VALUES
-(3, 1, 4, 800000);
+INSERT INTO `pengadopsi_mengadopsi_hewan` (`id_pengadopsi_mengadopsi_hewan`, `id_pengadopsi`, `id_hewan`, `biaya`, `tanggal`) VALUES
+(3, 1, 4, 800000, '2020-12-30 19:23:39'),
+(4, 1, 5, 80000, '2020-12-30 19:23:39'),
+(5, 7, 5, 80000, '2020-12-30 19:23:39');
 
 --
--- Trigger `pengadopsi_mengadopsi_hewan`
+-- Triggers `pengadopsi_mengadopsi_hewan`
 --
 DELIMITER $$
 CREATE TRIGGER `perubahan_status` AFTER INSERT ON `pengadopsi_mengadopsi_hewan` FOR EACH ROW UPDATE hewan SET status = 2
@@ -312,7 +312,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `shelter`
+-- Table structure for table `shelter`
 --
 
 CREATE TABLE `shelter` (
@@ -326,7 +326,7 @@ CREATE TABLE `shelter` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `shelter`
+-- Dumping data for table `shelter`
 --
 
 INSERT INTO `shelter` (`id_shelter`, `nama_shelter`, `alamat`, `foto`, `keterangan`, `latitude`, `longitude`) VALUES
@@ -344,7 +344,7 @@ INSERT INTO `shelter` (`id_shelter`, `nama_shelter`, `alamat`, `foto`, `keterang
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `vaksin`
+-- Table structure for table `vaksin`
 --
 
 CREATE TABLE `vaksin` (
@@ -352,12 +352,12 @@ CREATE TABLE `vaksin` (
   `nama_vaksin` varchar(200) NOT NULL,
   `harga_satuan` int(100) NOT NULL,
   `jumlah` int(100) NOT NULL,
-  `id_jenis_hewan` int(20) NOT NULL,
+  `id_jenis_hewan` int(20) DEFAULT NULL,
   `id_shelter` int(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `vaksin`
+-- Dumping data for table `vaksin`
 --
 
 INSERT INTO `vaksin` (`id_vaksin`, `nama_vaksin`, `harga_satuan`, `jumlah`, `id_jenis_hewan`, `id_shelter`) VALUES
@@ -368,7 +368,7 @@ INSERT INTO `vaksin` (`id_vaksin`, `nama_vaksin`, `harga_satuan`, `jumlah`, `id_
 (5, 'Wooku Wooku', 120000, 35, 2, 5),
 (6, 'KitTenfat', 147900, 34, 1, 7),
 (7, 'Pruvax vaksin tricat', 180000, 40, 1, 4),
-(8, 'Medoxy LA', 32000, 50, 4, 8),
+(8, 'Medoxy LA', 32000, 44, 4, 2),
 (9, 'Fluffy', 120000, 50, 1, 10);
 
 --
@@ -376,14 +376,14 @@ INSERT INTO `vaksin` (`id_vaksin`, `nama_vaksin`, `harga_satuan`, `jumlah`, `id_
 --
 
 --
--- Indeks untuk tabel `administrator`
+-- Indexes for table `administrator`
 --
 ALTER TABLE `administrator`
   ADD PRIMARY KEY (`id_administrator`),
   ADD KEY `id_shelter` (`id_shelter`);
 
 --
--- Indeks untuk tabel `hewan`
+-- Indexes for table `hewan`
 --
 ALTER TABLE `hewan`
   ADD PRIMARY KEY (`id_hewan`),
@@ -392,7 +392,7 @@ ALTER TABLE `hewan`
   ADD KEY `id_shelter` (`id_shelter`);
 
 --
--- Indeks untuk tabel `hewan_mendapatkan_makanan`
+-- Indexes for table `hewan_mendapatkan_makanan`
 --
 ALTER TABLE `hewan_mendapatkan_makanan`
   ADD PRIMARY KEY (`id_hewan_mendapatkan_makanan`),
@@ -400,7 +400,7 @@ ALTER TABLE `hewan_mendapatkan_makanan`
   ADD KEY `id_makanan` (`id_makanan`);
 
 --
--- Indeks untuk tabel `hewan_mendapatkan_vaksin`
+-- Indexes for table `hewan_mendapatkan_vaksin`
 --
 ALTER TABLE `hewan_mendapatkan_vaksin`
   ADD PRIMARY KEY (`id_hewan_mendapatkan_vaksin`),
@@ -408,19 +408,19 @@ ALTER TABLE `hewan_mendapatkan_vaksin`
   ADD KEY `id_vaksin` (`id_vaksin`);
 
 --
--- Indeks untuk tabel `jenis_hewan`
+-- Indexes for table `jenis_hewan`
 --
 ALTER TABLE `jenis_hewan`
   ADD PRIMARY KEY (`id_jenis_hewan`);
 
 --
--- Indeks untuk tabel `jenis_kandang`
+-- Indexes for table `jenis_kandang`
 --
 ALTER TABLE `jenis_kandang`
   ADD PRIMARY KEY (`id_jenis_kandang`);
 
 --
--- Indeks untuk tabel `kandang`
+-- Indexes for table `kandang`
 --
 ALTER TABLE `kandang`
   ADD PRIMARY KEY (`id_kandang`),
@@ -428,7 +428,7 @@ ALTER TABLE `kandang`
   ADD KEY `id_jenis_kandang` (`id_jenis_kandang`);
 
 --
--- Indeks untuk tabel `makanan`
+-- Indexes for table `makanan`
 --
 ALTER TABLE `makanan`
   ADD PRIMARY KEY (`id_makanan`),
@@ -436,13 +436,13 @@ ALTER TABLE `makanan`
   ADD KEY `id_shelter` (`id_shelter`);
 
 --
--- Indeks untuk tabel `pengadopsi`
+-- Indexes for table `pengadopsi`
 --
 ALTER TABLE `pengadopsi`
   ADD PRIMARY KEY (`id_pengadopsi`);
 
 --
--- Indeks untuk tabel `pengadopsi_mengadopsi_hewan`
+-- Indexes for table `pengadopsi_mengadopsi_hewan`
 --
 ALTER TABLE `pengadopsi_mengadopsi_hewan`
   ADD PRIMARY KEY (`id_pengadopsi_mengadopsi_hewan`),
@@ -450,13 +450,13 @@ ALTER TABLE `pengadopsi_mengadopsi_hewan`
   ADD KEY `id_pengadopsi` (`id_pengadopsi`);
 
 --
--- Indeks untuk tabel `shelter`
+-- Indexes for table `shelter`
 --
 ALTER TABLE `shelter`
   ADD PRIMARY KEY (`id_shelter`);
 
 --
--- Indeks untuk tabel `vaksin`
+-- Indexes for table `vaksin`
 --
 ALTER TABLE `vaksin`
   ADD PRIMARY KEY (`id_vaksin`),
@@ -464,140 +464,139 @@ ALTER TABLE `vaksin`
   ADD KEY `id_shelter` (`id_shelter`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `administrator`
+-- AUTO_INCREMENT for table `administrator`
 --
 ALTER TABLE `administrator`
-  MODIFY `id_administrator` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_administrator` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT untuk tabel `hewan`
+-- AUTO_INCREMENT for table `hewan`
 --
 ALTER TABLE `hewan`
   MODIFY `id_hewan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT untuk tabel `hewan_mendapatkan_makanan`
+-- AUTO_INCREMENT for table `hewan_mendapatkan_makanan`
 --
 ALTER TABLE `hewan_mendapatkan_makanan`
-  MODIFY `id_hewan_mendapatkan_makanan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_hewan_mendapatkan_makanan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT untuk tabel `hewan_mendapatkan_vaksin`
+-- AUTO_INCREMENT for table `hewan_mendapatkan_vaksin`
 --
 ALTER TABLE `hewan_mendapatkan_vaksin`
-  MODIFY `id_hewan_mendapatkan_vaksin` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_hewan_mendapatkan_vaksin` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT untuk tabel `jenis_hewan`
+-- AUTO_INCREMENT for table `jenis_hewan`
 --
 ALTER TABLE `jenis_hewan`
   MODIFY `id_jenis_hewan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT untuk tabel `jenis_kandang`
+-- AUTO_INCREMENT for table `jenis_kandang`
 --
 ALTER TABLE `jenis_kandang`
   MODIFY `id_jenis_kandang` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `kandang`
+-- AUTO_INCREMENT for table `kandang`
 --
 ALTER TABLE `kandang`
   MODIFY `id_kandang` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT untuk tabel `makanan`
+-- AUTO_INCREMENT for table `makanan`
 --
 ALTER TABLE `makanan`
-  MODIFY `id_makanan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_makanan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT untuk tabel `pengadopsi`
+-- AUTO_INCREMENT for table `pengadopsi`
 --
 ALTER TABLE `pengadopsi`
-  MODIFY `id_pengadopsi` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pengadopsi` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT untuk tabel `pengadopsi_mengadopsi_hewan`
+-- AUTO_INCREMENT for table `pengadopsi_mengadopsi_hewan`
 --
 ALTER TABLE `pengadopsi_mengadopsi_hewan`
-  MODIFY `id_pengadopsi_mengadopsi_hewan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pengadopsi_mengadopsi_hewan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `shelter`
+-- AUTO_INCREMENT for table `shelter`
 --
 ALTER TABLE `shelter`
   MODIFY `id_shelter` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT untuk tabel `vaksin`
+-- AUTO_INCREMENT for table `vaksin`
 --
 ALTER TABLE `vaksin`
-  MODIFY `id_vaksin` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_vaksin` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `administrator`
+-- Constraints for table `administrator`
 --
 ALTER TABLE `administrator`
-  ADD CONSTRAINT `administrator_ibfk_1` FOREIGN KEY (`id_shelter`) REFERENCES `shelter` (`id_shelter`);
+  ADD CONSTRAINT `administrator_ibfk_1` FOREIGN KEY (`id_shelter`) REFERENCES `shelter` (`id_shelter`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
--- Ketidakleluasaan untuk tabel `hewan`
+-- Constraints for table `hewan`
 --
 ALTER TABLE `hewan`
-  ADD CONSTRAINT `hewan_ibfk_1` FOREIGN KEY (`id_jenis_hewan`) REFERENCES `jenis_hewan` (`id_jenis_hewan`),
-  ADD CONSTRAINT `hewan_ibfk_2` FOREIGN KEY (`id_kandang`) REFERENCES `kandang` (`id_kandang`),
-  ADD CONSTRAINT `hewan_ibfk_3` FOREIGN KEY (`id_shelter`) REFERENCES `shelter` (`id_shelter`);
+  ADD CONSTRAINT `hewan_ibfk_2` FOREIGN KEY (`id_kandang`) REFERENCES `kandang` (`id_kandang`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `hewan_ibfk_3` FOREIGN KEY (`id_shelter`) REFERENCES `shelter` (`id_shelter`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
--- Ketidakleluasaan untuk tabel `hewan_mendapatkan_makanan`
+-- Constraints for table `hewan_mendapatkan_makanan`
 --
 ALTER TABLE `hewan_mendapatkan_makanan`
-  ADD CONSTRAINT `hewan_mendapatkan_makanan_ibfk_1` FOREIGN KEY (`id_hewan`) REFERENCES `hewan` (`id_hewan`),
-  ADD CONSTRAINT `hewan_mendapatkan_makanan_ibfk_2` FOREIGN KEY (`id_makanan`) REFERENCES `makanan` (`id_makanan`);
+  ADD CONSTRAINT `hewan_mendapatkan_makanan_ibfk_1` FOREIGN KEY (`id_hewan`) REFERENCES `hewan` (`id_hewan`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `hewan_mendapatkan_makanan_ibfk_2` FOREIGN KEY (`id_makanan`) REFERENCES `makanan` (`id_makanan`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
--- Ketidakleluasaan untuk tabel `hewan_mendapatkan_vaksin`
+-- Constraints for table `hewan_mendapatkan_vaksin`
 --
 ALTER TABLE `hewan_mendapatkan_vaksin`
-  ADD CONSTRAINT `hewan_mendapatkan_vaksin_ibfk_1` FOREIGN KEY (`id_hewan`) REFERENCES `hewan` (`id_hewan`),
-  ADD CONSTRAINT `hewan_mendapatkan_vaksin_ibfk_2` FOREIGN KEY (`id_vaksin`) REFERENCES `vaksin` (`id_vaksin`);
+  ADD CONSTRAINT `hewan_mendapatkan_vaksin_ibfk_1` FOREIGN KEY (`id_hewan`) REFERENCES `hewan` (`id_hewan`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `hewan_mendapatkan_vaksin_ibfk_2` FOREIGN KEY (`id_vaksin`) REFERENCES `vaksin` (`id_vaksin`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
--- Ketidakleluasaan untuk tabel `kandang`
+-- Constraints for table `kandang`
 --
 ALTER TABLE `kandang`
-  ADD CONSTRAINT `kandang_ibfk_1` FOREIGN KEY (`id_shelter`) REFERENCES `shelter` (`id_shelter`),
-  ADD CONSTRAINT `kandang_ibfk_2` FOREIGN KEY (`id_jenis_kandang`) REFERENCES `jenis_kandang` (`id_jenis_kandang`);
+  ADD CONSTRAINT `kandang_ibfk_1` FOREIGN KEY (`id_shelter`) REFERENCES `shelter` (`id_shelter`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `kandang_ibfk_2` FOREIGN KEY (`id_jenis_kandang`) REFERENCES `jenis_kandang` (`id_jenis_kandang`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
--- Ketidakleluasaan untuk tabel `makanan`
+-- Constraints for table `makanan`
 --
 ALTER TABLE `makanan`
-  ADD CONSTRAINT `makanan_ibfk_1` FOREIGN KEY (`id_jenis_hewan`) REFERENCES `jenis_hewan` (`id_jenis_hewan`),
-  ADD CONSTRAINT `makanan_ibfk_2` FOREIGN KEY (`id_shelter`) REFERENCES `shelter` (`id_shelter`);
+  ADD CONSTRAINT `makanan_ibfk_2` FOREIGN KEY (`id_shelter`) REFERENCES `shelter` (`id_shelter`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `makanan_ibfk_3` FOREIGN KEY (`id_jenis_hewan`) REFERENCES `jenis_hewan` (`id_jenis_hewan`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
--- Ketidakleluasaan untuk tabel `pengadopsi_mengadopsi_hewan`
+-- Constraints for table `pengadopsi_mengadopsi_hewan`
 --
 ALTER TABLE `pengadopsi_mengadopsi_hewan`
-  ADD CONSTRAINT `pengadopsi_mengadopsi_hewan_ibfk_1` FOREIGN KEY (`id_hewan`) REFERENCES `hewan` (`id_hewan`),
-  ADD CONSTRAINT `pengadopsi_mengadopsi_hewan_ibfk_2` FOREIGN KEY (`id_pengadopsi`) REFERENCES `pengadopsi` (`id_pengadopsi`);
+  ADD CONSTRAINT `pengadopsi_mengadopsi_hewan_ibfk_1` FOREIGN KEY (`id_hewan`) REFERENCES `hewan` (`id_hewan`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `pengadopsi_mengadopsi_hewan_ibfk_2` FOREIGN KEY (`id_pengadopsi`) REFERENCES `pengadopsi` (`id_pengadopsi`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
--- Ketidakleluasaan untuk tabel `vaksin`
+-- Constraints for table `vaksin`
 --
 ALTER TABLE `vaksin`
-  ADD CONSTRAINT `vaksin_ibfk_1` FOREIGN KEY (`id_jenis_hewan`) REFERENCES `jenis_hewan` (`id_jenis_hewan`),
-  ADD CONSTRAINT `vaksin_ibfk_2` FOREIGN KEY (`id_shelter`) REFERENCES `shelter` (`id_shelter`);
+  ADD CONSTRAINT `vaksin_ibfk_1` FOREIGN KEY (`id_jenis_hewan`) REFERENCES `jenis_hewan` (`id_jenis_hewan`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `vaksin_ibfk_2` FOREIGN KEY (`id_shelter`) REFERENCES `shelter` (`id_shelter`) ON DELETE SET NULL ON UPDATE SET NULL;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
