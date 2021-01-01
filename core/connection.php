@@ -1,8 +1,8 @@
 <?php
-    $servername = "localhost";
+    $servername = "db4free.net";
     $database = "db_petnitipan";
-    $username = "root";
-    $password = "";
+    $username = "genreydhim";
+    $password = "animalcrossingnewhorizon";
 
     $conn = mysqli_connect($servername, $username, $password, $database);
 
