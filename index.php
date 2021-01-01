@@ -5,11 +5,11 @@ $id_shelter = get('id-shelter');
 
 $jumlah_kandang = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS jumlah_kandang FROM kandang WHERE id_shelter = '$id_shelter'"))['jumlah_kandang'];
 $jumlah_hewan = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS jumlah_hewan FROM hewan WHERE id_shelter = '$id_shelter'"))['jumlah_hewan'];
-$jumlah_teradopsi = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS jumlah_teradopsi FROM hewan WHERE status = 1 AND id_shelter = '$id_shelter'"))['jumlah_teradopsi'];
-$jumlah_belum_teradopsi = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS jumlah_belum_teradopsi FROM hewan WHERE status = 2 AND id_shelter = '$id_shelter'"))['jumlah_belum_teradopsi'];
+$jumlah_teradopsi = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS jumlah_teradopsi FROM hewan WHERE status = 2 AND id_shelter = '$id_shelter'"))['jumlah_teradopsi'];
+$jumlah_belum_teradopsi = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS jumlah_belum_teradopsi FROM hewan WHERE status = 1 AND id_shelter = '$id_shelter'"))['jumlah_belum_teradopsi'];
 
 $pengadopsian = mysqli_query($conn, "SELECT ph.id_pengadopsi_mengadopsi_hewan, p.nama_pengadopsi, p.email, p.no_telepon, h.foto, h.nama_hewan, ph.tanggal, ph.biaya FROM pengadopsi_mengadopsi_hewan ph INNER JOIN pengadopsi p ON ph.id_pengadopsi = p.id_pengadopsi INNER JOIN hewan h ON ph.id_hewan = h.id_hewan WHERE h.id_shelter = '$id_shelter'");
-$aktivitas_perawatan = mysqli_query($conn, "(SELECT h.foto, 'Diberikan makan' AS pesan, CONCAT(m.nama_makanan, ' - ', hm.jumlah, 'gr') AS jumlah, hm.waktu FROM hewan_mendapatkan_makanan hm INNER JOIN hewan h ON hm.id_hewan = h.id_hewan INNER JOIN makanan m ON hm.id_makanan = m.id_makanan WHERE h.status = 1 AND h.id_shelter = '$id_shelter' ORDER BY hm.waktu DESC) UNION (SELECT h.foto, 'Divaksin' AS pesan, CONCAT(v.nama_vaksin, ' - ', hv.jumlah, 'pcs') AS jumlah, hv.waktu FROM hewan_mendapatkan_vaksin hv INNER JOIN hewan h ON hv.id_hewan = h.id_hewan INNER JOIN vaksin v ON hv.id_vaksin = v.id_vaksin WHERE h.status = 1 AND h.id_shelter = '$id_shelter' ORDER BY hv.waktu DESC)");
+$aktivitas_perawatan = mysqli_query($conn, "(SELECT h.foto, 'Diberikan Makan' AS pesan, CONCAT(m.nama_makanan, ' - ', hm.jumlah, 'gr') AS jumlah, hm.waktu FROM hewan_mendapatkan_makanan hm INNER JOIN hewan h ON hm.id_hewan = h.id_hewan INNER JOIN makanan m ON hm.id_makanan = m.id_makanan WHERE h.status = 1 AND h.id_shelter = '$id_shelter' ORDER BY hm.waktu DESC) UNION (SELECT h.foto, 'Divaksin' AS pesan, CONCAT(v.nama_vaksin, ' - ', hv.jumlah, 'pcs') AS jumlah, hv.waktu FROM hewan_mendapatkan_vaksin hv INNER JOIN hewan h ON hv.id_hewan = h.id_hewan INNER JOIN vaksin v ON hv.id_vaksin = v.id_vaksin WHERE h.status = 1 AND h.id_shelter = '$id_shelter' ORDER BY hv.waktu DESC)");
 ?>
 
 <?php
@@ -80,7 +80,7 @@ include 'templates/sidebar.php';
                 <div class="card card-widget">
                     <div class="card-body gradient-5">
                         <div class="media">
-                            <span class="card-widget__icon"><i class="icon-ghost"></i></span>
+                            <span class="card-widget__icon"><i class="fas fa-praying-hands menu-icon"></i></span>
                             <div class="media-body">
                                 <h2 class="card-widget__title"><?= $jumlah_belum_teradopsi ?></h2>
                                 <h5 class="card-widget__subtitle">Belum Teradopsi</h5>
@@ -169,7 +169,7 @@ include 'templates/sidebar.php';
 
                             ?>
                                 <div class="media border-bottom-1 pt-3 pb-3">
-                                    <img width="36" src="<?= $row['foto'] ?>" class="mr-3 rounded-circle">
+                                    <img src="<?= $row['foto'] ?>" class="mr-3 rounded-circle img-icon">
                                     <div class="media-body">
                                         <h5><?= $row['pesan'] ?></h5>
                                         <p class="mb-0"><?= $row['jumlah'] ?></p>
