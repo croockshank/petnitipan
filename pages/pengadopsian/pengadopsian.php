@@ -58,7 +58,7 @@
                                         <td><?=$row['nama_pengadopsi']?></td>
                                         <td><?=$row['email']?></td>
                                         <td><?=$row['no_telepon']?></td>
-                                        <td><img src="<?=$row['foto']?>" class="rounded-circle mr-3" alt=""><?=$row['nama_hewan']?></td>
+                                        <td><img src="<?=$row['foto']?>" class="rounded-circle img-icon mr-3" alt=""><?=$row['nama_hewan']?></td>
                                         <td><?=format_date_only_pretier($row['tanggal'])?></td>
                                         <td><span class="label gradient-4 rounded"><?=format_rupiah($row['biaya'])?></span></td>
                                         <td>

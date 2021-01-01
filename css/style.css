@@ -10620,7 +10620,8 @@ input[type="checkbox"]:checked:after {
     border-top: 1px solid #e1e5ea; }
 
 .active-member .table img {
-  width: 35px; }
+  width: 64px;
+  height: 64px; }
 
 .dataTables_wrapper {
   padding-top: 10px; }

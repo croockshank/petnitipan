@@ -46,8 +46,8 @@
 <!-- Auto Numeric -->
 <script src="./plugins/auto-numeric/auto-numeric.min.js"></script>
 
-<script src="./js/dashboard/dashboard-1.js"></script>
 <script src="js/custom.min.js"></script>
+<script src="js/dashboard/dashboard-1.js"></script>
 
 </body>
 
