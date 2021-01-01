@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 31, 2020 at 11:09 AM
+-- Generation Time: Jan 01, 2021 at 02:42 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -41,16 +41,26 @@ CREATE TABLE `administrator` (
 --
 
 INSERT INTO `administrator` (`id_administrator`, `nama`, `username`, `password`, `id_shelter`) VALUES
-(1, 'Wawan Santoso', 'Wanan19', ' $2y$10$CyuJSoO.XkjY9mw9O1WRJOQIYp9MN.ER25qtUAXhCvuLdBihyn1L2', 7),
-(2, 'Dimasqi Alifudin', 'mdhimasqi', ' $2y$10$CyuJSoO.XkjY9mw9O1WRJOQIYp9MN.ER25qtUAXhCvuLdBihyn1L2', 5),
-(3, 'Renald Eka', 'renald45', ' $2y$10$CyuJSoO.XkjY9mw9O1WRJOQIYp9MN.ER25qtUAXhCvuLdBihyn1L2', 10),
-(4, 'Thoriq Sujibdo', 'thrq89', ' $2y$10$CyuJSoO.XkjY9mw9O1WRJOQIYp9MN.ER25qtUAXhCvuLdBihyn1L2', 1),
-(5, 'Mamat Perwara', 'mmt12', ' $2y$10$CyuJSoO.XkjY9mw9O1WRJOQIYp9MN.ER25qtUAXhCvuLdBihyn1L2', 3),
-(6, 'Tora Mahmudi', 'tora_m', ' $2y$10$CyuJSoO.XkjY9mw9O1WRJOQIYp9MN.ER25qtUAXhCvuLdBihyn1L2', 8),
-(7, 'Riza Hamdani', 'riiiza', ' $2y$10$CyuJSoO.XkjY9mw9O1WRJOQIYp9MN.ER25qtUAXhCvuLdBihyn1L2', 6),
-(8, 'Puja tobiro', 'puja_puja', ' $2y$10$CyuJSoO.XkjY9mw9O1WRJOQIYp9MN.ER25qtUAXhCvuLdBihyn1L2', 4),
-(9, 'Gambang Tinanjar', 'tinanjar_19', ' $2y$10$CyuJSoO.XkjY9mw9O1WRJOQIYp9MN.ER25qtUAXhCvuLdBihyn1L2', 2),
-(10, 'Satriya Wibowo', 'sty_wbw', ' $2y$10$CyuJSoO.XkjY9mw9O1WRJOQIYp9MN.ER25qtUAXhCvuLdBihyn1L2', 9);
+(1, 'Wawan Santoso', 'Wanan19', ' $2y$10$CyuJSoO.XkjY9mw9O1WRJOQIYp9MN.ER25qtUAXhCvuLdBihyn1L2', 2),
+(2, 'Dimasqi Alifudin', 'mdhimasqi', ' $2y$10$CyuJSoO.XkjY9mw9O1WRJOQIYp9MN.ER25qtUAXhCvuLdBihyn1L2', 2),
+(3, 'Renald Eka', 'renald45', ' $2y$10$CyuJSoO.XkjY9mw9O1WRJOQIYp9MN.ER25qtUAXhCvuLdBihyn1L2', 2),
+(4, 'Thoriq Sujibdo', 'thrq89', ' $2y$10$CyuJSoO.XkjY9mw9O1WRJOQIYp9MN.ER25qtUAXhCvuLdBihyn1L2', 2),
+(5, 'Mamat Perwara', 'mmt12', ' $2y$10$CyuJSoO.XkjY9mw9O1WRJOQIYp9MN.ER25qtUAXhCvuLdBihyn1L2', 2),
+(6, 'Tora Mahmudi', 'tora_m', ' $2y$10$CyuJSoO.XkjY9mw9O1WRJOQIYp9MN.ER25qtUAXhCvuLdBihyn1L2', 2),
+(7, 'Riza Hamdani', 'riiiza', ' $2y$10$CyuJSoO.XkjY9mw9O1WRJOQIYp9MN.ER25qtUAXhCvuLdBihyn1L2', 2),
+(8, 'Puja tobiro', 'puja_puja', ' $2y$10$CyuJSoO.XkjY9mw9O1WRJOQIYp9MN.ER25qtUAXhCvuLdBihyn1L2', 2),
+(9, 'Gambang Tinanjaro', 'tinanjar_20', '$2y$10$gC122IwJSFyTxxp0jtdxcOqZf/xfRgPejyT6ntROuwUGtye.pB2Hu', 2),
+(10, 'Satriya Wibowo', 'sty_wbw', ' $2y$10$CyuJSoO.XkjY9mw9O1WRJOQIYp9MN.ER25qtUAXhCvuLdBihyn1L2', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `all_months`
+-- (See below for the actual view)
+--
+CREATE TABLE `all_months` (
+`date` date
+);
 
 -- --------------------------------------------------------
 
@@ -77,15 +87,16 @@ CREATE TABLE `hewan` (
 --
 
 INSERT INTO `hewan` (`id_hewan`, `nama_hewan`, `jenis_kelamin`, `panjang`, `berat`, `id_jenis_hewan`, `tanggal_masuk`, `status`, `foto`, `id_kandang`, `id_shelter`) VALUES
-(1, 'Shintaro', 'Laki Laki', 40, 3.6, 1, '2020-12-24', 1, '', 3, 10),
-(2, 'Tobama', 'Perempuan', 25, 6, 7, '2020-12-24', 1, '', NULL, 3),
-(3, 'Koko', 'Laki Laki', 90, 8.7, 2, '2020-12-25', 1, '', 4, 7),
-(4, 'Katty', 'Perempuan', 70, 10.3, 1, '2020-12-25', 2, '', 5, 9),
-(5, 'Rata', 'Laki Laki', 20, 4.5, 4, '2020-12-23', 1, '', 1, 2),
-(6, 'Kirito', 'Laki Laki', 60, 9.5, 2, '2020-12-16', 1, '', 4, 1),
-(7, 'Nekoma', 'Perempuan', 40, 6.9, 1, '2020-12-26', 1, '', 3, 9),
-(8, 'Bull Frek', 'Laki Laki', 12, 15.6, 2, '2020-12-20', 1, '', 8, 6),
-(10, 'Ashuna', 'Perempuan', 30, 5.9, 1, '2020-12-23', 1, '', 3, 5);
+(1, 'Shintaro', 'Laki Laki', 40, 3.6, 1, '2020-12-24', 1, 'https://cdn0-production-images-kly.akamaized.net/tAr72vTJCpF4IF9O5L493CD79kE=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2754932/original/005940800_1552970791-fotoHL_kucing.jpg', 3, 2),
+(2, 'Tobama', 'Perempuan', 25, 6, 7, '2020-12-24', 1, 'https://cdn0-production-images-kly.akamaized.net/STmuwNUBQYiJzOw18HKDdUOxgGo=/640x480/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/1071039/original/041915500_1448872446-14824-Baby-Hermanns-Tortoise-white-background.jpg', NULL, 2),
+(3, 'Koko', 'Laki Laki', 90, 8.7, 2, '2020-12-25', 1, 'https://assets.pikiran-rakyat.com/crop/0x0:0x0/x/photo/2020/03/18/3480150857.jpg', 4, 2),
+(4, 'Katty', 'Perempuan', 70, 10.3, 1, '2020-12-25', 2, 'https://mmc.tirto.id/image/otf/880x495/2019/01/08/kucing-sedih-istockphoto_ratio-16x9.jpg', 5, 2),
+(5, 'Rata', 'Laki Laki', 20, 4.5, 4, '2020-12-23', 1, 'https://blogpictures.99.co/jenis-jenis-kelinci.jpg', 1, 2),
+(6, 'Kirito', 'Laki Laki', 60, 9.5, 2, '2020-12-16', 1, 'https://ecs7.tokopedia.net/blog-tokopedia-com/uploads/2018/02/anjing1.jpg', 4, 2),
+(7, 'Nekoma', 'Perempuan', 40, 6.9, 1, '2020-12-26', 1, 'https://images.ctfassets.net/cnu0m8re1exe/1GxSYi0mQSp9xJ5svaWkVO/d151a93af61918c234c3049e0d6393e1/93347270_cat-1151519_1280.jpg?w=650&h=433&fit=fill', 3, 2),
+(8, 'Bull Frek', 'Laki Laki', 12, 15.6, 2, '2020-12-20', 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAtkqOrSH3GlHc1akublFYJUz3D-R6HgYaNQ&usqp=CAU', 8, 2),
+(10, 'Ashuna', 'Perempuan', 30, 5.9, 2, '2020-12-23', 1, 'https://asset.kompas.com/crops/dMeD0u-LptPQ_i9iiuU-QbcVREY=/0x2:960x642/750x500/data/photo/2018/03/06/2717904116.jpg', 3, 2),
+(15, 'Timmy', 'Perempuan', 80, 45, 2, '2020-12-31', 1, 'https://assets.pikiran-rakyat.com/crop/0x0:0x0/x/photo/2020/07/19/3644871928.jpg', 4, 2);
 
 -- --------------------------------------------------------
 
@@ -107,7 +118,7 @@ CREATE TABLE `hewan_mendapatkan_makanan` (
 
 INSERT INTO `hewan_mendapatkan_makanan` (`id_hewan_mendapatkan_makanan`, `id_hewan`, `id_makanan`, `jumlah`, `waktu`) VALUES
 (4, 4, 1, 1000, '2020-12-27 00:00:00'),
-(5, 5, 8, 30, '2020-12-30 14:37:26'),
+(5, 5, 8, 100, '2020-12-31 14:37:00'),
 (7, 5, 8, 12, '2020-12-31 12:29:00');
 
 --
@@ -139,8 +150,8 @@ CREATE TABLE `hewan_mendapatkan_vaksin` (
 
 INSERT INTO `hewan_mendapatkan_vaksin` (`id_hewan_mendapatkan_vaksin`, `id_hewan`, `id_vaksin`, `jumlah`, `waktu`) VALUES
 (2, 3, 1, 5, '2020-12-23 00:00:00'),
-(5, 5, 8, 1, '2020-12-30 14:38:12'),
-(7, 5, 8, 2, '2020-12-31 12:29:00');
+(5, 5, 8, 1, '2020-12-30 14:38:00'),
+(7, 5, 8, 3, '2020-12-28 12:29:00');
 
 --
 -- Triggers `hewan_mendapatkan_vaksin`
@@ -190,7 +201,7 @@ CREATE TABLE `jenis_kandang` (
 --
 
 INSERT INTO `jenis_kandang` (`id_jenis_kandang`, `luas`) VALUES
-(3, 30),
+(3, 36),
 (4, 35),
 (5, 40),
 (6, 45),
@@ -214,14 +225,14 @@ CREATE TABLE `kandang` (
 --
 
 INSERT INTO `kandang` (`id_kandang`, `nama_kandang`, `id_shelter`, `id_jenis_kandang`) VALUES
-(1, 'Kandang Kelinci medium', 1, 4),
-(2, 'Kandang Tupaai Besar', 1, 5),
+(1, 'Kandang Kelinci medium', 2, 4),
+(2, 'Kandang Tupaai Besar', 2, 5),
 (3, 'Kandang Kucing medium', 2, 4),
-(4, 'Kandang Anjing Medium', 4, 3),
-(5, 'Kandang Kucing Besar', 10, 5),
-(7, 'Kandang Ular Besar', 3, 5),
-(8, 'Kandang Anjing Besar', 10, 6),
-(9, 'Kandang Anjing Super Besar', 4, 7);
+(4, 'Kandang Anjing Medium', 2, 3),
+(5, 'Kandang Kucing Besar', 2, 5),
+(7, 'Kandang Ular Besar', 2, 5),
+(8, 'Kandang Anjing Besar Kecil', 2, 7),
+(9, 'Kandang Anjing Super Besar', 2, 7);
 
 -- --------------------------------------------------------
 
@@ -243,16 +254,16 @@ CREATE TABLE `makanan` (
 --
 
 INSERT INTO `makanan` (`id_makanan`, `nama_makanan`, `jumlah`, `harga_satuan`, `id_jenis_hewan`, `id_shelter`) VALUES
-(1, 'Whiskas', 11000, 300, 1, 8),
-(2, 'Proplan', 10000, 240, 1, 5),
-(3, 'Pedigree', 20000, 500, 2, 10),
-(4, 'Dog Choize Beef', 10000, 340, 2, 1),
-(5, 'Milet Campur', 9000, 370, 6, 4),
-(6, 'Mazuri Tortoise', 12000, 250, 7, 2),
-(7, 'Daisu Tusukan Bento Food', 15000, 350, 5, 3),
+(1, 'Whiskas', 11000, 300, 1, 2),
+(2, 'Proplan', 10000, 240, 1, 2),
+(3, 'Pedigree', 20000, 500, 2, 2),
+(4, 'Dog Choize Beef', 10000, 340, 2, 2),
+(5, 'Milet Campur', 9000, 370, 6, 2),
+(6, 'Mazuri Tortoise', 12000, 2500, 7, 2),
+(7, 'Daisu Tusukan Bento Food', 15000, 350, 5, 2),
 (8, 'Rabbit Alfafa', 15928, 254, 4, 2),
-(9, 'Pur 551', 17000, 210, NULL, 7),
-(10, 'SUN', 25000, 430, NULL, 9);
+(9, 'Pur 551', 17000, 210, NULL, 2),
+(10, 'SUN', 25000, 430, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -296,7 +307,6 @@ CREATE TABLE `pengadopsi_mengadopsi_hewan` (
 --
 
 INSERT INTO `pengadopsi_mengadopsi_hewan` (`id_pengadopsi_mengadopsi_hewan`, `id_pengadopsi`, `id_hewan`, `biaya`, `tanggal`) VALUES
-(3, 1, 4, 800000, '2020-12-30 19:23:39'),
 (4, 1, 5, 80000, '2020-12-30 19:23:39'),
 (5, 7, 5, 80000, '2020-12-30 19:23:39');
 
@@ -361,15 +371,24 @@ CREATE TABLE `vaksin` (
 --
 
 INSERT INTO `vaksin` (`id_vaksin`, `nama_vaksin`, `harga_satuan`, `jumlah`, `id_jenis_hewan`, `id_shelter`) VALUES
-(1, 'Immune Booster Cat', 80000, 40, 1, 2),
-(2, 'f4 AntiVirus', 261000, 30, 1, 3),
-(3, 'Rabisin', 70000, 25, 2, 1),
-(4, 'Eurican 6 Plus', 350000, 20, 2, 6),
-(5, 'Wooku Wooku', 120000, 35, 2, 5),
-(6, 'KitTenfat', 147900, 34, 1, 7),
-(7, 'Pruvax vaksin tricat', 180000, 40, 1, 4),
+(1, 'Immune Booster Cat', 70000, 50, 1, 2),
+(2, 'f4 AntiVirus', 261000, 30, 1, 2),
+(3, 'Rabisin', 70000, 25, 2, 2),
+(4, 'Eurican 6 Plus', 350000, 20, 2, 2),
+(5, 'Wooku Wooku', 120000, 35, 2, 2),
+(6, 'KitTenfat', 147900, 34, 1, 2),
+(7, 'Pruvax vaksin tricat', 180000, 40, 1, 2),
 (8, 'Medoxy LA', 32000, 44, 4, 2),
-(9, 'Fluffy', 120000, 50, 1, 10);
+(9, 'Fluffy', 120000, 50, 1, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `all_months`
+--
+DROP TABLE IF EXISTS `all_months`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `all_months`  AS  select `dates`.`date` AS `date` from (select last_day(curdate()) + interval 1 day - interval 1 month AS `date` union all select last_day(curdate()) + interval 1 day - interval 2 month AS `LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY - INTERVAL 2 MONTH` union all select last_day(curdate()) + interval 1 day - interval 3 month AS `LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY - INTERVAL 3 MONTH` union all select last_day(curdate()) + interval 1 day - interval 4 month AS `LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY - INTERVAL 4 MONTH` union all select last_day(curdate()) + interval 1 day - interval 5 month AS `LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY - INTERVAL 5 MONTH` union all select last_day(curdate()) + interval 1 day - interval 6 month AS `LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY - INTERVAL 6 MONTH` union all select last_day(curdate()) + interval 1 day - interval 7 month AS `LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY - INTERVAL 7 MONTH` union all select last_day(curdate()) + interval 1 day - interval 8 month AS `LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY - INTERVAL 8 MONTH` union all select last_day(curdate()) + interval 1 day - interval 9 month AS `LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY - INTERVAL 9 MONTH` union all select last_day(curdate()) + interval 1 day - interval 10 month AS `LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY - INTERVAL 10 MONTH` union all select last_day(curdate()) + interval 1 day - interval 11 month AS `LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY - INTERVAL 11 MONTH` union all select last_day(curdate()) + interval 1 day - interval 12 month AS `LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY - INTERVAL 12 MONTH`) `dates` ;
 
 --
 -- Indexes for dumped tables
@@ -477,7 +496,7 @@ ALTER TABLE `administrator`
 -- AUTO_INCREMENT for table `hewan`
 --
 ALTER TABLE `hewan`
-  MODIFY `id_hewan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_hewan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `hewan_mendapatkan_makanan`
